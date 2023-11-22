@@ -198,18 +198,16 @@ namespace sistema_modular_cafe_majada.views
         public void ShowProcedenciaGrid()
         {
             //se llama el metodo para obtener los datos de la base de datos
-            var procedenciaController = new ProcedenciaDestinoController();
-            List<ProcedenciaDestino> datosP = procedenciaController.ObtenerProcedenciasDestinoNombres();
+            var procedenciaController = new MaquinariaController();
+            List<Maquinaria> datosP = procedenciaController.ObtenerMaquinaria();
 
             var datosProcedencia = datosP.Select(proced => new
             {
-                ID = proced.IdProcedencia,
-                Nombre = proced.NombreProcedencia,
-                Descripcion = string.IsNullOrWhiteSpace(proced.DescripcionProcedencia) ? proced.DescripcionProcedencia = "" : proced.DescripcionProcedencia,
-                Nombre_Socio = proced.NombreSocioProcedencia ?? "", // Verificar si es NULL y establecer cadena vacía en ese caso
-                Nombre_Finca = proced.NombreFincaSocio ?? "",       
-                Nombre_Beneficio = proced.NombreBenficioUbicacion ?? "", 
-                Nombre_Maquinaria = proced.NombreMaquinaria ?? "" 
+                ID = proced.IdMaquinaria,
+                Nombre = proced.NombreMaquinaria,
+                NumeroSerieMaquinaria = proced.NumeroSerieMaquinaria,
+                ModeloMaquinaria = proced.ModeloMaquinaria,
+                CapacidadMaxMaquinaria = proced.CapacidadMaxMaquinaria
             }).ToList();
 
             // Asignar los datos al DataGridView
@@ -217,7 +215,6 @@ namespace sistema_modular_cafe_majada.views
 
             dtg_opcSP.RowHeadersVisible = false;
             dtg_opcSP.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
         }
 
         //
@@ -411,18 +408,16 @@ namespace sistema_modular_cafe_majada.views
                         else
                         {
                             //se llama el metodo para obtener los datos de la base de datos
-                            var procedenciaController = new ProcedenciaDestinoController();
-                            List<ProcedenciaDestino> datosP = procedenciaController.BuscarProcedenciaDestino(text.Text);
+                            var procedenciaController = new MaquinariaController();
+                            List<Maquinaria> datosP = procedenciaController.BuscarMaquinaria(text.Text);
 
                             var datosProcedencia = datosP.Select(proced => new
                             {
-                                ID = proced.IdProcedencia,
-                                Nombre = proced.NombreProcedencia,
-                                Descripcion = string.IsNullOrWhiteSpace(proced.DescripcionProcedencia) ? proced.DescripcionProcedencia = "" : proced.DescripcionProcedencia,
-                                Nombre_Socio = proced.NombreSocioProcedencia ?? "", // Verificar si es NULL y establecer cadena vacía en ese caso
-                                Nombre_Finca = proced.NombreFincaSocio ?? "",
-                                Nombre_Beneficio = proced.NombreBenficioUbicacion ?? "",
-                                Nombre_Maquinaria = proced.NombreMaquinaria ?? ""
+                                ID = proced.IdMaquinaria,
+                                Nombre = proced.NombreMaquinaria,
+                                NumeroSerieMaquinaria = proced.NumeroSerieMaquinaria ?? "",
+                                ModeloMaquinaria = proced.ModeloMaquinaria ?? "",
+                                CapacidadMaxMaquinaria = proced.CapacidadMaxMaquinaria
                             }).ToList();
 
                             // Asignar los datos al DataGridView

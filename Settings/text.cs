@@ -17,9 +17,9 @@
             this.key = key;
 
             // Valores originales sin cifrar
-            string servidor = "192.72.24.55"; // Cambia esto a tu servidor MySQL
+            string servidor = "localhost"; // Cambia esto a tu servidor MySQL
             string usuario = "root"; // Cambia esto a tu nombre de usuario MySQL
-            string contrasena = "Admin202307"; // Cambia esto a tu contraseña MySQL
+            string contrasena = "admin"; // Cambia esto a tu contraseña MySQL
             string baseDeDatos = "DBMAJADADEMO"; // Cambia esto a tu nombre de base de datos MySQL
 
             // Cifra los datos individualmente usando EncryptString y la misma clave

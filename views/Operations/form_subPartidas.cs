@@ -1495,7 +1495,7 @@ namespace sistema_modular_cafe_majada.views
 
         private void txb_doctoAlmacen_KeyPress(object sender, KeyPressEventArgs e)
         {
-            int maxLength = 10;
+            int maxLength = 200;
 
             if (txb_doctoAlmacen.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back)
             {
@@ -1895,7 +1895,7 @@ namespace sistema_modular_cafe_majada.views
 
         private void AsignarFuente()
         {
-            Label[] labels = { label1, label2,label4, label5,label6,label7, label8,label9,label10,label11,
+            Label[] labels = { label1, label2, label4, label5,label6,label7, label8,label9,label10,label11,
                                 label12,label13,label14,label15,label16,label17,label18,label19,label20,label21,
                                 label22,label23,label24,label25,label26,label27,label28,label29,label30,label31,
                                 label32,label33,label34,label35,label36,label37,label38};
@@ -1904,7 +1904,7 @@ namespace sistema_modular_cafe_majada.views
                                     txb_horaInicio,txb_horaSalida,txb_humedad,txb_nombreCatador,txb_nombrePesador,txb_nombrePuntero,
                                     txb_observacionCafe,txb_observacionCatador,txb_observacionPesa,txb_observacionSecad,txb_pdasSemana1,
                                     txb_pdasSemana2,txb_pdasSemana3,txb_procedencia,txb_rendimiento,txb_resultadoCatacion,txb_subPartida,txb_tiempoSecad,
-                                    txb_ubicadoBodega};
+                                    txb_ubicadoBodega,txb_codCalidad,txb_codProcedencia,txb_codPuntero,txb_codCatador,txb_codPesador};
             Button[] buttons = { btn_SaveUser, btn_Cancel };
             ComboBox[] comboBoxes = {cbx_subProducto };
             DateTimePicker[] dateTimePickers = {dtp_fechaCatacion,dtp_fechaInicioSecad,dtp_fechaPesa,dtp_fechaSalidaSecad,

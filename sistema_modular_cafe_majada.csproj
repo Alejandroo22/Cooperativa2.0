@@ -1,0 +1,966 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B14872F3-47EA-4C56-8695-768D00F0429A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>sistema_modular_cafe_majada</RootNamespace>
+    <AssemblyName>sistema_modular_cafe_majada</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.21.9.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Protobuf.3.21.9\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.1.3.5\lib\net462\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.Streams.1.3.5\lib\net462\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MySql.Data, Version=8.0.33.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.8.0.33\lib\net462\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="controller\AccesController\ChargeController.cs" />
+    <Compile Include="controller\AccesController\FallaController.cs" />
+    <Compile Include="controller\AccesController\ModuleController.cs" />
+    <Compile Include="controller\AccesController\RoleController.cs" />
+    <Compile Include="controller\HarvestController\CosechaController.cs" />
+    <Compile Include="controller\HarvestController\LoteController.cs" />
+    <Compile Include="controller\InfrastructureController\AlmacenController.cs" />
+    <Compile Include="controller\InfrastructureController\BodegaController.cs" />
+    <Compile Include="controller\InfrastructureController\MaquinariaController.cs" />
+    <Compile Include="controller\OperationsController\CantidadSiloPiñaController.cs" />
+    <Compile Include="controller\OperationsController\PersonalController.cs" />
+    <Compile Include="controller\OperationsController\ProcedenciaDestinoController.cs" />
+    <Compile Include="controller\OperationsController\SalidaController.cs" />
+    <Compile Include="controller\OperationsController\SocioController.cs" />
+    <Compile Include="controller\OperationsController\SubPartidaController.cs" />
+    <Compile Include="controller\OperationsController\SubProductoController.cs" />
+    <Compile Include="controller\OperationsController\TrasladoController.cs" />
+    <Compile Include="controller\OperationsController\TrillaController.cs" />
+    <Compile Include="controller\ProductController\CCafeController.cs" />
+    <Compile Include="controller\InfrastructureController\BeneficioController.cs" />
+    <Compile Include="controller\InfrastructureController\FincaController.cs" />
+    <Compile Include="controller\ProductController\TipoCafeController.cs" />
+    <Compile Include="controller\ReportsController\ReportesController.cs" />
+    <Compile Include="controller\SecurityData\LogController.cs" />
+    <Compile Include="controller\SecurityData\PasswordManager.cs" />
+    <Compile Include="controller\UserDataController\PersonController.cs" />
+    <Compile Include="controller\UserDataController\UserController.cs" />
+    <Compile Include="DataSets\repor_bodega.cs">
+      <DependentUpon>repor_bodega.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_bodega.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repor_bodega.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_cafebodega.cs">
+      <DependentUpon>repor_cafebodega.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_cafebodega.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repor_cafebodega.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_ccalidad.cs">
+      <DependentUpon>repor_ccalidad.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_ccalidad.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repor_ccalidad.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_numsubpartida.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repor_numsubpartida.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_salidas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repor_salidas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_subpartida.cs">
+      <DependentUpon>repor_subpartida.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_subpartida.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repor_subpartida.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_trillado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repor_trillado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="model\DAO\AlmacenDAO.cs" />
+    <Compile Include="model\DAO\BodegaDAO.cs" />
+    <Compile Include="model\DAO\CalidadCafeDAO.cs" />
+    <Compile Include="model\DAO\CantidadSiloPiñaDAO.cs" />
+    <Compile Include="model\DAO\ChargeDAO.cs" />
+    <Compile Include="model\DAO\CosechaDAO.cs" />
+    <Compile Include="model\DAO\FallasDAO.cs" />
+    <Compile Include="model\DAO\FincaDAO.cs" />
+    <Compile Include="model\DAO\LoteDAO.cs" />
+    <Compile Include="model\DAO\MaquinariaDAO.cs" />
+    <Compile Include="model\DAO\ModuleDAO.cs" />
+    <Compile Include="model\DAO\PersonalDAO.cs" />
+    <Compile Include="model\DAO\PersonDAO.cs" />
+    <Compile Include="model\DAO\ProcedenciaDestinoDAO.cs" />
+    <Compile Include="model\DAO\ReportesDAO.cs" />
+    <Compile Include="model\DAO\RoleDAO.cs" />
+    <Compile Include="model\DAO\BeneficioDAO.cs" />
+    <Compile Include="model\DAO\SalidaDAO.cs" />
+    <Compile Include="model\DAO\SecurityDAO\LogDAO.cs" />
+    <Compile Include="model\DAO\SocioDAO.cs" />
+    <Compile Include="model\DAO\SubPartidaDAO.cs" />
+    <Compile Include="model\DAO\SubProductoDAO.cs" />
+    <Compile Include="model\DAO\TipoCafeDAO.cs" />
+    <Compile Include="model\DAO\TrasladoDAO.cs" />
+    <Compile Include="model\DAO\TrillaDAO.cs" />
+    <Compile Include="model\Helpers\SqlExceptionHelper.cs" />
+    <Compile Include="model\Mapping\Acces\Charge.cs" />
+    <Compile Include="model\Mapping\Acces\Fallas.cs" />
+    <Compile Include="model\Mapping\Acces\Module.cs" />
+    <Compile Include="model\Mapping\Acces\Role.cs" />
+    <Compile Include="model\Connection\ConnectionDB.cs" />
+    <Compile Include="model\DAO\UserDAO.cs" />
+    <Compile Include="model\Mapping\Acces\User_Module.cs" />
+    <Compile Include="model\Mapping\Infrastructure\Almacen.cs" />
+    <Compile Include="model\Mapping\Infrastructure\Bodega.cs" />
+    <Compile Include="model\Mapping\Infrastructure\Maquinaria.cs" />
+    <Compile Include="model\Mapping\Operations\CantidadSiloPiña.cs" />
+    <Compile Include="model\Mapping\Operations\ProcedenciaDestino.cs" />
+    <Compile Include="model\Mapping\Operations\Salida.cs" />
+    <Compile Include="model\Mapping\Operations\Socio.cs" />
+    <Compile Include="model\Mapping\Operations\SubPartida.cs" />
+    <Compile Include="model\Mapping\Operations\SubProducto.cs" />
+    <Compile Include="model\Mapping\Operations\Traslado.cs" />
+    <Compile Include="model\Mapping\Operations\Trilla.cs" />
+    <Compile Include="model\Mapping\Product\CalidadCafe.cs" />
+    <Compile Include="model\Mapping\Harvest\Lote.cs" />
+    <Compile Include="model\Mapping\Infrastructure\Finca.cs" />
+    <Compile Include="model\Mapping\Harvest\Cosecha.cs" />
+    <Compile Include="model\Mapping\Infrastructure\Beneficio.cs" />
+    <Compile Include="model\Mapping\Operations\Personal.cs" />
+    <Compile Include="model\Mapping\Product\TipoCafe.cs" />
+    <Compile Include="model\Mapping\Reports\Reportes.cs" />
+    <Compile Include="model\Mapping\UserData\Persona.cs" />
+    <Compile Include="model\Mapping\UserData\Usuario.cs" />
+    <Compile Include="Settings\EncryptionUtility.cs" />
+    <Compile Include="Settings\text.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="views\Main\form_administracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Main\form_administracion.Designer.cs">
+      <DependentUpon>form_administracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_beneficios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_beneficios.Designer.cs">
+      <DependentUpon>form_beneficios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Product\form_calidades_cafe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Product\form_calidades_cafe.Designer.cs">
+      <DependentUpon>form_calidades_cafe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Acces\form_cargosPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Acces\form_cargosPersonal.Designer.cs">
+      <DependentUpon>form_cargosPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Product\form_claseUva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Product\form_claseUva.Designer.cs">
+      <DependentUpon>form_claseUva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Harvest\form_cosecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Harvest\form_cosecha.Designer.cs">
+      <DependentUpon>form_cosecha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_destCafe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_destCafe.Designer.cs">
+      <DependentUpon>form_destCafe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Acces\form_fallaMaquina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Acces\form_fallaMaquina.Designer.cs">
+      <DependentUpon>form_fallaMaquina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcReportExistencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcReportExistencias.Designer.cs">
+      <DependentUpon>form_opcReportExistencias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcSalida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcSalida.Designer.cs">
+      <DependentUpon>form_opcSalida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcSubPartida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcSubPartida.Designer.cs">
+      <DependentUpon>form_opcSubPartida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcTraslado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcTraslado.Designer.cs">
+      <DependentUpon>form_opcTraslado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcTrilla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcTrilla.Designer.cs">
+      <DependentUpon>form_opcTrilla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Main\form_seleccionCosecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Main\form_seleccionCosecha.Designer.cs">
+      <DependentUpon>form_seleccionCosecha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_tablaBeneficio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_tablaBeneficio.Designer.cs">
+      <DependentUpon>form_tablaBeneficio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_tablaCCafe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_tablaCCafe.Designer.cs">
+      <DependentUpon>form_tablaCCafe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Operations\form_trasladoCafe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Operations\form_trasladoCafe.Designer.cs">
+      <DependentUpon>form_trasladoCafe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_finca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_finca.Designer.cs">
+      <DependentUpon>form_finca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Acces\form_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Acces\form_login.Designer.cs">
+      <DependentUpon>form_login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Operations\form_socios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Operations\form_socios.Designer.cs">
+      <DependentUpon>form_socios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Main\form_main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Main\form_main.Designer.cs">
+      <DependentUpon>form_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_maquinas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_maquinas.Designer.cs">
+      <DependentUpon>form_maquinas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcGeneralData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcGeneralData.Designer.cs">
+      <DependentUpon>form_opcGeneralData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcLote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_opcLote.Designer.cs">
+      <DependentUpon>form_opcLote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Main\form_panel_principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Main\form_panel_principal.Designer.cs">
+      <DependentUpon>form_panel_principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="views\Operations\form_personal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Operations\form_personal.Designer.cs">
+      <DependentUpon>form_personal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\repor_traslados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repor_traslados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="views\UserData\form_personas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\UserData\form_personas.Designer.cs">
+      <DependentUpon>form_personas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Operations\form_prodCafe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Operations\form_prodCafe.Designer.cs">
+      <DependentUpon>form_prodCafe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Main\form_reportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Main\form_reportes.Designer.cs">
+      <DependentUpon>form_reportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Acces\form_rol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Acces\form_rol.Designer.cs">
+      <DependentUpon>form_rol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Operations\form_salidasCafe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Operations\form_salidasCafe.Designer.cs">
+      <DependentUpon>form_salidasCafe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Acces\form_splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Acces\form_splash.Designer.cs">
+      <DependentUpon>form_splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Main\form_coffeeStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Main\form_coffeeStocks.Designer.cs">
+      <DependentUpon>form_coffeeStocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Operations\form_subPartidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Operations\form_subPartidas.Designer.cs">
+      <DependentUpon>form_subPartidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Operations\form_subprod_cafe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Operations\form_subprod_cafe.Designer.cs">
+      <DependentUpon>form_subprod_cafe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_tableperson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_tableperson.Designer.cs">
+      <DependentUpon>form_tableperson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\GridViews\form_tableUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\GridViews\form_tableUser.Designer.cs">
+      <DependentUpon>form_tableUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Operations\form_trillaCafe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Operations\form_trillaCafe.Designer.cs">
+      <DependentUpon>form_trillaCafe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_ubicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Infrastructure\form_ubicacion.Designer.cs">
+      <DependentUpon>form_ubicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Main\form_userData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Main\form_userData.Designer.cs">
+      <DependentUpon>form_userData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\UserData\form_usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\UserData\form_usuarios.Designer.cs">
+      <DependentUpon>form_usuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\FontViews.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="views\Main\form_administracion.resx">
+      <DependentUpon>form_administracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Infrastructure\form_beneficios.resx">
+      <DependentUpon>form_beneficios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Product\form_calidades_cafe.resx">
+      <DependentUpon>form_calidades_cafe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Acces\form_cargosPersonal.resx">
+      <DependentUpon>form_cargosPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Product\form_claseUva.resx">
+      <DependentUpon>form_claseUva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Harvest\form_cosecha.resx">
+      <DependentUpon>form_cosecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Infrastructure\form_destCafe.resx">
+      <DependentUpon>form_destCafe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Acces\form_fallaMaquina.resx">
+      <DependentUpon>form_fallaMaquina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_opcReportExistencias.resx">
+      <DependentUpon>form_opcReportExistencias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_opcSalida.resx">
+      <DependentUpon>form_opcSalida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_opcSubPartida.resx">
+      <DependentUpon>form_opcSubPartida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_opcTraslado.resx">
+      <DependentUpon>form_opcTraslado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_opcTrilla.resx">
+      <DependentUpon>form_opcTrilla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Operations\form_salidasCafe.resx">
+      <DependentUpon>form_salidasCafe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Main\form_seleccionCosecha.resx">
+      <DependentUpon>form_seleccionCosecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_tablaBeneficio.resx">
+      <DependentUpon>form_tablaBeneficio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_tablaCCafe.resx">
+      <DependentUpon>form_tablaCCafe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Operations\form_trasladoCafe.resx">
+      <DependentUpon>form_trasladoCafe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Infrastructure\form_finca.resx">
+      <DependentUpon>form_finca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Acces\form_login.resx">
+      <DependentUpon>form_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Operations\form_socios.resx">
+      <DependentUpon>form_socios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Main\form_main.resx">
+      <DependentUpon>form_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Infrastructure\form_maquinas.resx">
+      <DependentUpon>form_maquinas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_opcGeneralData.resx">
+      <DependentUpon>form_opcGeneralData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_opcLote.resx">
+      <DependentUpon>form_opcLote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Main\form_panel_principal.resx">
+      <DependentUpon>form_panel_principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="views\Operations\form_personal.resx">
+      <DependentUpon>form_personal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Reports\report_numsubpartida.rdlc" />
+    <EmbeddedResource Include="views\Reports\repor_salidas.rdlc" />
+    <EmbeddedResource Include="views\Reports\repor_traslados.rdlc" />
+    <EmbeddedResource Include="views\Reports\repor_grafico.rdlc" />
+    <EmbeddedResource Include="views\Reports\repor_trillado.rdlc" />
+    <EmbeddedResource Include="views\UserData\form_personas.resx">
+      <DependentUpon>form_personas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Operations\form_prodCafe.resx">
+      <DependentUpon>form_prodCafe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Main\form_reportes.resx">
+      <DependentUpon>form_reportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Reports\repor_bodega.rdlc" />
+    <EmbeddedResource Include="views\Reports\repor_cafebodega.rdlc" />
+    <EmbeddedResource Include="views\Reports\repor_ccalidad.rdlc" />
+    <EmbeddedResource Include="views\Reports\repor_subpartida.rdlc" />
+    <None Include="DataSets\repor_bodega.xsc">
+      <DependentUpon>repor_bodega.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_bodega.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repor_bodega.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\repor_bodega.xss">
+      <DependentUpon>repor_bodega.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_cafebodega.xsc">
+      <DependentUpon>repor_cafebodega.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_cafebodega.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repor_cafebodega.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\repor_cafebodega.xss">
+      <DependentUpon>repor_cafebodega.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_ccalidad.xsc">
+      <DependentUpon>repor_ccalidad.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_ccalidad.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repor_ccalidad.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\repor_ccalidad.xss">
+      <DependentUpon>repor_ccalidad.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_numsubpartida.xsc">
+      <DependentUpon>repor_numsubpartida.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_numsubpartida.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repor_numsubpartida.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\repor_numsubpartida.xss">
+      <DependentUpon>repor_numsubpartida.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_salidas.xsc">
+      <DependentUpon>repor_salidas.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_salidas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repor_salidas.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\repor_salidas.xss">
+      <DependentUpon>repor_salidas.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_subpartida.xsc">
+      <DependentUpon>repor_subpartida.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_subpartida.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repor_subpartida.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\repor_subpartida.xss">
+      <DependentUpon>repor_subpartida.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_trillado.xsc">
+      <DependentUpon>repor_trillado.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_trillado.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repor_trillado.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\repor_trillado.xss">
+      <DependentUpon>repor_trillado.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <EmbeddedResource Include="views\Acces\form_rol.resx">
+      <DependentUpon>form_rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Acces\form_splash.resx">
+      <DependentUpon>form_splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Main\form_coffeeStocks.resx">
+      <DependentUpon>form_coffeeStocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Operations\form_subPartidas.resx">
+      <DependentUpon>form_subPartidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Operations\form_subprod_cafe.resx">
+      <DependentUpon>form_subprod_cafe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_tableperson.resx">
+      <DependentUpon>form_tableperson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\GridViews\form_tableUser.resx">
+      <DependentUpon>form_tableUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Operations\form_trillaCafe.resx">
+      <DependentUpon>form_trillaCafe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Infrastructure\form_ubicacion.resx">
+      <DependentUpon>form_ubicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Main\form_userData.resx">
+      <DependentUpon>form_userData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\UserData\form_usuarios.resx">
+      <DependentUpon>form_usuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Fonts\Oswald-Bold.ttf" />
+    <None Include="Fonts\Oswald-ExtraLight.ttf" />
+    <None Include="Fonts\Oswald-Light.ttf" />
+    <None Include="Fonts\Oswald-Medium.ttf" />
+    <None Include="Fonts\Oswald-Regular.ttf" />
+    <None Include="Fonts\Oswald-SemiBold.ttf" />
+    <None Include="Fonts\Oswald-VariableFont_wght.ttf" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Settings\app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSets\repor_traslados.xsc">
+      <DependentUpon>repor_traslados.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\repor_traslados.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repor_traslados.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\repor_traslados.xss">
+      <DependentUpon>repor_traslados.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buscar 24px.png" />
+    <None Include="Resources\editar 24px.png" />
+    <None Include="Resources\apoyo.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\falla 64px.png" />
+    <None Include="Resources\cose45px.png" />
+    <None Include="Resources\trabajadores 45px.png" />
+    <None Include="Resources\personas 45px.png" />
+    <None Include="Resources\roles 45px.png" />
+    <None Include="Resources\lupa 24px.png" />
+    <None Include="Resources\lupa 32px.png" />
+    <None Include="Resources\Despulpa 45px.png" />
+    <None Include="Resources\trilla 45px.png" />
+    <None Include="Resources\Entrada 45px.png" />
+    <None Include="Resources\Salida 45px.png" />
+    <None Include="Resources\SubPartida 45px.png" />
+    <None Include="Resources\lavar 45px.png" />
+    <None Include="Resources\lavar %281%29.png" />
+    <None Include="Resources\lavar.png" />
+    <None Include="Resources\coffee-cup-presentation.png" />
+    <None Include="Resources\coffee-cup.png" />
+    <None Include="Resources\control-de-calidad 64px.png" />
+    <None Include="Resources\sub_productos 64px.png" />
+    <None Include="Resources\clase_uva64px.png" />
+    <None Include="Resources\finca64px.png" />
+    <None Include="Resources\beneficio64px.png" />
+    <None Include="Resources\calendario.png" />
+    <None Include="Resources\calendario 128px.png" />
+    <None Include="Resources\cargos 32px.png" />
+    <None Include="Resources\btn_eliminar 24px.png" />
+    <Content Include="Resources\circle-info-solid.png" />
+    <None Include="Resources\Logo__majada.png" />
+    <None Include="Resources\Logo_majada_claro.png" />
+    <None Include="Resources\icono-majada64px.ico" />
+    <None Include="Resources\icono_majada-64px.ico" />
+    <None Include="Resources\grano-de-cafe 512px.png" />
+    <None Include="Resources\grano-de-cafe 24px.png" />
+    <None Include="Resources\grano-de-cafe 64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuadrado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuadrado %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuadrado %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eliminar %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x %281%29 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo oficial majada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cerrar-sesion 24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\activos24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tablero 24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuario 24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password 24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\admin 2 24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\admin 1 24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\almacen 24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuarios 32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuarios 512px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuarios 128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuarios 64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuarios 45px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tablas 45px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\servicio-al-cliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\servicio-al-cliente 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_guardar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disquete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eliminar %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boton-eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\impresora.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tablas 24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\modulo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_cafe_majada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icono-majada.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel 24px.png" />
+    <None Include="Resources\pdf 24px.png" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\pdf.png" />
+    <None Include="Resources\cerrar_sesion.png" />
+    <None Include="Resources\administracion.png" />
+    <None Include="Resources\existencias_cafe.png" />
+    <None Include="Resources\panel.png" />
+    <None Include="Resources\analisis.png" />
+    <None Include="Resources\reporte.png" />
+    <None Include="Resources\diseno-de-interfaz-de-usuario.png" />
+    <None Include="Resources\cerrar-sesion.png" />
+    <None Include="Resources\existencias.png" />
+    <None Include="Resources\usuario 512px.png" />
+    <None Include="Resources\usuario.png" />
+    <None Include="Resources\lupa.png" />
+    <None Include="Resources\Barra de busqueda 1.png" />
+    <None Include="Resources\Barra de busqueda.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

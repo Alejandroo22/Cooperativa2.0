@@ -1904,7 +1904,7 @@ namespace sistema_modular_cafe_majada.views
                                     txb_horaInicio,txb_horaSalida,txb_humedad,txb_nombreCatador,txb_nombrePesador,txb_nombrePuntero,
                                     txb_observacionCafe,txb_observacionCatador,txb_observacionPesa,txb_observacionSecad,txb_pdasSemana1,
                                     txb_pdasSemana2,txb_pdasSemana3,txb_procedencia,txb_rendimiento,txb_resultadoCatacion,txb_subPartida,txb_tiempoSecad,
-                                    txb_ubicadoBodega,txb_codCalidad,txb_codProcedencia,txb_codPuntero,txb_codCatador,txb_codPesador};
+                                    txb_ubicadoBodega,txb_codCalidad,txb_codProcedencia,txb_codPuntero,txb_codCatador,txb_codPesador,txb_codUbicacion,txb_codSilo};
             Button[] buttons = { btn_SaveUser, btn_Cancel };
             ComboBox[] comboBoxes = {cbx_subProducto };
             DateTimePicker[] dateTimePickers = {dtp_fechaCatacion,dtp_fechaInicioSecad,dtp_fechaPesa,dtp_fechaSalidaSecad,

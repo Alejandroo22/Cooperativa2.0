@@ -307,9 +307,9 @@ namespace sistema_modular_cafe_majada.model.DAO
                             Num1Semana = Convert.ToInt32(reader["num1_semana_subpartida"]),
                             Num2Semana = Convert.ToInt32(reader["num2_semana_subpartida"]),
                             Num3Semana = Convert.ToInt32(reader["num3_semana_subpartida"]),
-                            Dias1SubPartida = Convert.ToInt32(reader["dias1_subpartida"]),
-                            Dias2SubPartida = Convert.ToInt32(reader["dias2_subpartida"]),
-                            Dias3SubPartida = Convert.ToInt32(reader["dias3_subpartida"]),
+                            Dias1SubPartida = Convert.ToString(reader["dias1_subpartida"]),
+                            Dias2SubPartida = Convert.ToString(reader["dias2_subpartida"]),
+                            Dias3SubPartida = Convert.ToString(reader["dias3_subpartida"]),
                             Fecha1SubPartida = Convert.ToString(reader["fecha1_subpartida"]),
                             Fecha2SubPartida = Convert.ToString(reader["fecha2_subpartida"]),
                             Fecha3SubPartida = Convert.ToString(reader["fecha3_subpartida"]),
@@ -408,9 +408,9 @@ namespace sistema_modular_cafe_majada.model.DAO
                             Num1Semana = Convert.ToInt32(reader["num1_semana_subpartida"]),
                             Num2Semana = Convert.IsDBNull(reader["num2_semana_subpartida"]) ? 0 : Convert.ToInt32(reader["num2_semana_subpartida"]),
                             Num3Semana = Convert.IsDBNull(reader["num3_semana_subpartida"]) ? 0 : Convert.ToInt32(reader["num3_semana_subpartida"]),
-                            Dias1SubPartida = Convert.ToInt32(reader["dias1_subpartida"]),
-                            Dias2SubPartida = Convert.IsDBNull(reader["dias2_subpartida"]) ? 0 : Convert.ToInt32(reader["dias2_subpartida"]),
-                            Dias3SubPartida = Convert.IsDBNull(reader["dias3_subpartida"]) ? 0 : Convert.ToInt32(reader["dias3_subpartida"]),
+                            Dias1SubPartida = Convert.ToString(reader["dias1_subpartida"]),
+                            Dias2SubPartida = Convert.IsDBNull(reader["dias2_subpartida"]) ? "" : Convert.ToString(reader["dias2_subpartida"]),
+                            Dias3SubPartida = Convert.IsDBNull(reader["dias3_subpartida"]) ? "" : Convert.ToString(reader["dias3_subpartida"]),
                             Fecha1SubPartida = Convert.ToString(reader["fecha1_subpartida"]),
                             Fecha2SubPartida = Convert.IsDBNull(reader["fecha2_subpartida"]) ? null : Convert.ToString(reader["fecha2_subpartida"]),
                             Fecha3SubPartida = Convert.IsDBNull(reader["fecha3_subpartida"]) ? null : Convert.ToString(reader["fecha3_subpartida"]),
@@ -516,9 +516,9 @@ namespace sistema_modular_cafe_majada.model.DAO
                             Num1Semana = Convert.ToInt32(reader["num1_semana_subpartida"]),
                             Num2Semana = Convert.ToInt32(reader["num2_semana_subpartida"]),
                             Num3Semana = Convert.ToInt32(reader["num3_semana_subpartida"]),
-                            Dias1SubPartida = Convert.ToInt32(reader["dias1_subpartida"]),
-                            Dias2SubPartida = Convert.ToInt32(reader["dias2_subpartida"]),
-                            Dias3SubPartida = Convert.ToInt32(reader["dias3_subpartida"]),
+                            Dias1SubPartida = Convert.ToString(reader["dias1_subpartida"]),
+                            Dias2SubPartida = Convert.ToString(reader["dias2_subpartida"]),
+                            Dias3SubPartida = Convert.ToString(reader["dias3_subpartida"]),
                             Fecha1SubPartida = Convert.ToString(reader["fecha1_subpartida"]),
                             Fecha2SubPartida = Convert.ToString(reader["fecha2_subpartida"]),
                             Fecha3SubPartida = Convert.ToString(reader["fecha3_subpartida"]),
@@ -623,9 +623,9 @@ namespace sistema_modular_cafe_majada.model.DAO
                             Num1Semana = Convert.ToInt32(reader["num1_semana_subpartida"]),
                             Num2Semana = Convert.IsDBNull(reader["num2_semana_subpartida"]) ? 0 : Convert.ToInt32(reader["num2_semana_subpartida"]),
                             Num3Semana = Convert.IsDBNull(reader["num3_semana_subpartida"]) ? 0 : Convert.ToInt32(reader["num3_semana_subpartida"]),
-                            Dias1SubPartida = Convert.ToInt32(reader["dias1_subpartida"]),
-                            Dias2SubPartida = Convert.IsDBNull(reader["dias2_subpartida"]) ? 0 : Convert.ToInt32(reader["dias2_subpartida"]),
-                            Dias3SubPartida = Convert.IsDBNull(reader["dias3_subpartida"]) ? 0 : Convert.ToInt32(reader["dias3_subpartida"]),
+                            Dias1SubPartida = Convert.ToString(reader["dias1_subpartida"]),
+                            Dias2SubPartida = Convert.IsDBNull(reader["dias2_subpartida"]) ? "" : Convert.ToString(reader["dias2_subpartida"]),
+                            Dias3SubPartida = Convert.IsDBNull(reader["dias3_subpartida"]) ? "" : Convert.ToString(reader["dias3_subpartida"]),
                             Fecha1SubPartida = Convert.ToString(reader["fecha1_subpartida"]),
                             Fecha2SubPartida = Convert.IsDBNull(reader["fecha2_subpartida"]) ? null : Convert.ToString(reader["fecha2_subpartida"]),
                             Fecha3SubPartida = Convert.IsDBNull(reader["fecha3_subpartida"]) ? null : Convert.ToString(reader["fecha3_subpartida"]),
@@ -730,9 +730,9 @@ namespace sistema_modular_cafe_majada.model.DAO
                             Num1Semana = Convert.ToInt32(reader["num1_semana_subpartida"]),
                             Num2Semana = Convert.IsDBNull(reader["num2_semana_subpartida"]) ? 0 : Convert.ToInt32(reader["num2_semana_subpartida"]),
                             Num3Semana = Convert.IsDBNull(reader["num3_semana_subpartida"]) ? 0 : Convert.ToInt32(reader["num3_semana_subpartida"]),
-                            Dias1SubPartida = Convert.ToInt32(reader["dias1_subpartida"]),
-                            Dias2SubPartida = Convert.IsDBNull(reader["dias2_subpartida"]) ? 0 : Convert.ToInt32(reader["dias2_subpartida"]),
-                            Dias3SubPartida = Convert.IsDBNull(reader["dias3_subpartida"]) ? 0 : Convert.ToInt32(reader["dias3_subpartida"]),
+                            Dias1SubPartida = Convert.ToString(reader["dias1_subpartida"]),
+                            Dias2SubPartida = Convert.IsDBNull(reader["dias2_subpartida"]) ? "" : Convert.ToString(reader["dias2_subpartida"]),
+                            Dias3SubPartida = Convert.IsDBNull(reader["dias3_subpartida"]) ? "" : Convert.ToString(reader["dias3_subpartida"]),
                             Fecha1SubPartida = Convert.ToString(reader["fecha1_subpartida"]),
                             Fecha2SubPartida = Convert.IsDBNull(reader["fecha2_subpartida"]) ? null : Convert.ToString(reader["fecha2_subpartida"]),
                             Fecha3SubPartida = Convert.IsDBNull(reader["fecha3_subpartida"]) ? null : Convert.ToString(reader["fecha3_subpartida"]),
@@ -845,7 +845,7 @@ namespace sistema_modular_cafe_majada.model.DAO
                             NombreCosecha = Convert.IsDBNull(reader["nombre_cosecha"]) ? null : Convert.ToString(reader["nombre_cosecha"]),
                             NumeroSubpartida = Convert.ToInt32(reader["num_subpartida"]),
                             Num1Semana = Convert.ToInt32(reader["num1_semana_subpartida"]),
-                            Dias1SubPartida = Convert.ToInt32(reader["dias1_subpartida"]),
+                            Dias1SubPartida = Convert.ToString(reader["dias1_subpartida"]),
                            // Num2Semana = Convert.IsDBNull(reader["num2_semana_subpartida"]) ? 0 : Convert.ToInt32(reader["num2_semana_subpartida"]),
                           //  Dias2SubPartida = Convert.IsDBNull(reader["dias2_subpartida"]) ? 0 : Convert.ToInt32(reader["dias2_subpartida"]),
                           //  Num3Semana = Convert.IsDBNull(reader["num3_semana_subpartida"]) ? 0 : Convert.ToInt32(reader["num3_semana_subpartida"]),
@@ -963,9 +963,9 @@ namespace sistema_modular_cafe_majada.model.DAO
                             Num1Semana = Convert.ToInt32(reader["num1_semana_subpartida"]),
                             Num2Semana = Convert.ToInt32(reader["num2_semana_subpartida"]),
                             Num3Semana = Convert.ToInt32(reader["num3_semana_subpartida"]),
-                            Dias1SubPartida = Convert.ToInt32(reader["dias1_subpartida"]),
-                            Dias2SubPartida = Convert.ToInt32(reader["dias2_subpartida"]),
-                            Dias3SubPartida = Convert.ToInt32(reader["dias3_subpartida"]),
+                            Dias1SubPartida = Convert.ToString(reader["dias1_subpartida"]),
+                            Dias2SubPartida = Convert.ToString(reader["dias2_subpartida"]),
+                            Dias3SubPartida = Convert.ToString(reader["dias3_subpartida"]),
                             Fecha1SubPartida = Convert.ToString(reader["fecha1_subpartida"]),
                             Fecha2SubPartida = Convert.ToString(reader["fecha2_subpartida"]),
                             Fecha3SubPartida = Convert.ToString(reader["fecha3_subpartida"]),
@@ -1103,14 +1103,20 @@ namespace sistema_modular_cafe_majada.model.DAO
 
                 string consulta = @"SET lc_time_names = 'es_ES';
 
-                                    SELECT cc.nombre_calidad, 
-                                            CONCAT(UCASE(LEFT(MONTHNAME(sp.salida_punto_secado_subpartida), 1)), 
-                                                    LOWER(SUBSTRING(MONTHNAME(sp.salida_punto_secado_subpartida), 2))) AS mes,
-                                            SUM(sp.peso_qqs_subpartida / sp.rendimiento_subpartida) AS QQs_Oro
-                                    FROM subpartida sp
-                                    JOIN Calidad_Cafe cc ON sp.id_calidad_cafe_subpartida = cc.id_calidad
-                                    WHERE MONTH(sp.salida_punto_secado_subpartida) = MONTH(CURDATE()) AND sp.id_cosecha_subpartida = @id
-                                    GROUP BY cc.nombre_calidad, mes;
+                                   SELECT 
+                                        cc.nombre_calidad, 
+                                        CONCAT(
+                                            UCASE(LEFT(MONTHNAME(sp.salida_punto_secado_subpartida), 1)),
+                                            LOWER(SUBSTRING(MONTHNAME(sp.salida_punto_secado_subpartida), 2))
+                                        ) AS mes,
+                                        SUM(sp.peso_qqs_subpartida / sp.rendimiento_subpartida) AS QQs_Oro
+                                    FROM 
+                                        subpartida sp
+                                        JOIN Calidad_Cafe cc ON sp.id_calidad_cafe_subpartida = cc.id_calidad
+                                    WHERE 
+                                        sp.id_cosecha_subpartida = @id
+                                    GROUP BY 
+                                        cc.nombre_calidad, mes;
 
                                     SET lc_time_names = 'en_US';";
 

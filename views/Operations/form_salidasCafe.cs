@@ -40,7 +40,8 @@ namespace sistema_modular_cafe_majada.views
         public double cantidaQQsActUpdate = 0.00;
         public double cantidaSacoUpdate = 0.00;
         public double cantidaSacoActUpdate = 0.00;
-
+        private CCafeController cCafe = new CCafeController();
+        private PersonalController pPersonal = new PersonalController();
         private bool imgClickUpdAlmacen = false;
         private bool imgClickCalidad = false;
         private int iSalida;
@@ -1093,6 +1094,88 @@ namespace sistema_modular_cafe_majada.views
         private void cbx_subProducto_Enter(object sender, EventArgs e)
         {
             //CbxSubProducto();
+        }
+
+        private void txb_codCalidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    string codigo = txb_codCalidad.Text.Trim();
+                    int codigoInt;
+
+                    if (int.TryParse(codigo, out codigoInt))
+                    {
+                        // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
+                        CalidadCafe calidad = cCafe.ObtenerNombrePorCodigo(codigoInt);
+
+                        if (calidad != null)
+                        {
+                            // Asignar el nombre al TextBox para mostrar el nombre
+                            txb_calidadCafe.Text = calidad.NombreCalidad;
+                            CalidadSeleccionada.ICalidadSeleccionada = calidad.IdCalidad;
+                            CalidadSeleccionada.NombreCalidadSeleccionada = calidad.NombreCalidad;
+                            imgClickCalidad = true;
+                            CbxSubProducto();
+                        }
+                        else
+                        {
+                            MessageBox.Show("ID no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Manejar el caso en el que el texto no sea un número entero válido
+                        MessageBox.Show("Por favor, ingrese un número entero válido como código.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el nombre: " + ex.Message);
+                MessageBox.Show("Se produjo un error al obtener el nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txb_codPesador_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    string codigo = txb_codPesador.Text.Trim();
+                    int codigoInt;
+
+                    if (int.TryParse(codigo, out codigoInt))
+                    {
+                        // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
+                        Personal personal = pPersonal.ObtenerNombrePorCodigo(codigoInt);
+
+                        if (personal != null)
+                        {
+                            // Asignar el nombre al TextBox para mostrar el nombre
+                            txb_personal.Text = personal.NombrePersona;
+                            imgClickCalidad = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("ID no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Manejar el caso en el que el texto no sea un número entero válido
+                        MessageBox.Show("Por favor, ingrese un número entero válido como código.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el nombre: " + ex.Message);
+                MessageBox.Show("Se produjo un error al obtener el nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

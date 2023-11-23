@@ -193,6 +193,19 @@ namespace sistema_modular_cafe_majada.controller.OperationsController
 
             return personal;
         }
+        public Personal ObtenerNombrePorCodigo(int codigo)
+        {
+            Personal Idpersonal = new Personal();
+            try
+            {
+                Idpersonal = personalDAO.ObtenerNombrePorCodigo(codigo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error durante la verificacion del Personal en la base de datos: " + ex.Message);
+            }
+            return Idpersonal;
+        }
 
     }
 }

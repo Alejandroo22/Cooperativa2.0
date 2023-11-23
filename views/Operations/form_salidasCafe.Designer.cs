@@ -179,6 +179,7 @@ namespace sistema_modular_cafe_majada.views
             this.txb_codPesador.Name = "txb_codPesador";
             this.txb_codPesador.Size = new System.Drawing.Size(71, 27);
             this.txb_codPesador.TabIndex = 1;
+            this.txb_codPesador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_codPesador_KeyPress);
             // 
             // btn_tPesador
             // 
@@ -445,6 +446,7 @@ namespace sistema_modular_cafe_majada.views
             this.txb_codCalidad.Name = "txb_codCalidad";
             this.txb_codCalidad.Size = new System.Drawing.Size(71, 27);
             this.txb_codCalidad.TabIndex = 1;
+            this.txb_codCalidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_codCalidad_KeyPress);
             // 
             // cbx_subProducto
             // 

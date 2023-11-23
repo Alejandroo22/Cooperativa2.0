@@ -1,6 +1,7 @@
 using Microsoft.Reporting.WinForms;
 using sistema_modular_cafe_majada.controller.InfrastructureController;
 using sistema_modular_cafe_majada.controller.OperationsController;
+using sistema_modular_cafe_majada.controller.ProductController;
 using sistema_modular_cafe_majada.controller.SecurityData;
 using sistema_modular_cafe_majada.controller.UserDataController;
 using sistema_modular_cafe_majada.model.Acces;
@@ -33,6 +34,7 @@ namespace sistema_modular_cafe_majada.views
         private int icosechaCambio;
         TrillaController countTr = null;
         private TrillaController reportesController = new TrillaController();
+        private CCafeController cCafe = new CCafeController();
         UserController userC = new UserController();
         public string rbSelect;
         public double cantidaQQsUpdate = 0.00;
@@ -1060,6 +1062,29 @@ namespace sistema_modular_cafe_majada.views
                             txb_numTrilla.Text = Convert.ToString(numS);
                         }
                     }
+                }
+            }
+        }
+
+        private void txb_codCalidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                string codigo = txb_codCalidad.Text.Trim();
+                int codigoInt;
+
+                if (int.TryParse(codigo, out codigoInt))
+                {
+                    string nombre = cCafe.ObtenerNombrePorCodigo(codigoInt);
+
+                    // Asignar el nombre al TextBox para mostrar el nombre
+                    txb_calidadCafe.Text = nombre;
+                }
+                else
+                {
+                    // Manejar el caso en el que el texto no sea un número entero válido
+                    MessageBox.Show("Por favor, ingrese un número entero válido como código.");
                 }
             }
         }

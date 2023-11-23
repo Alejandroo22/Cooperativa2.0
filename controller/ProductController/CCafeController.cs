@@ -164,5 +164,23 @@ namespace sistema_modular_cafe_majada.controller.ProductController
             }
         }
 
+        public string ObtenerNombrePorCodigo(int codigo)
+        {
+
+            string nombre = "Código no encontrado";
+
+            try
+            {
+                // Llamada al método del DAO para obtener el nombre por el código
+                nombre = ccafeDAO.ObtenerNombrePorCodigo(codigo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error durante la ejecución: " + ex.Message);
+            }
+
+            return nombre;
+        }
+
     }
 }

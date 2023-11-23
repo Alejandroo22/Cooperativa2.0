@@ -74,12 +74,12 @@ namespace sistema_modular_cafe_majada
             // 
             this.lbl_nameModule.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_nameModule.AutoSize = true;
-            this.lbl_nameModule.Font = new System.Drawing.Font("Oswald", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_nameModule.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_nameModule.ForeColor = System.Drawing.Color.White;
             this.lbl_nameModule.Location = new System.Drawing.Point(614, 8);
             this.lbl_nameModule.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_nameModule.Name = "lbl_nameModule";
-            this.lbl_nameModule.Size = new System.Drawing.Size(92, 16);
+            this.lbl_nameModule.Size = new System.Drawing.Size(98, 13);
             this.lbl_nameModule.TabIndex = 4;
             this.lbl_nameModule.Text = "Nombre del modulo";
             // 
@@ -87,12 +87,12 @@ namespace sistema_modular_cafe_majada
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(310, 8);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(249, 16);
+            this.label1.Size = new System.Drawing.Size(285, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Cooperativa de Cafetaleros de San José La Majada de R.L";
             // 
@@ -148,12 +148,12 @@ namespace sistema_modular_cafe_majada
             // 
             this.lbl_numCosecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_numCosecha.AutoSize = true;
-            this.lbl_numCosecha.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_numCosecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_numCosecha.ForeColor = System.Drawing.Color.White;
             this.lbl_numCosecha.Location = new System.Drawing.Point(125, 483);
             this.lbl_numCosecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_numCosecha.Name = "lbl_numCosecha";
-            this.lbl_numCosecha.Size = new System.Drawing.Size(54, 22);
+            this.lbl_numCosecha.Size = new System.Drawing.Size(59, 18);
             this.lbl_numCosecha.TabIndex = 0;
             this.lbl_numCosecha.Text = "numero";
             this.lbl_numCosecha.Click += new System.EventHandler(this.lbl_numCosecha_Click);
@@ -162,12 +162,12 @@ namespace sistema_modular_cafe_majada
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(9, 483);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 22);
+            this.label2.Size = new System.Drawing.Size(116, 18);
             this.label2.TabIndex = 0;
             this.label2.Text = "Cosecha Actual:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -175,7 +175,7 @@ namespace sistema_modular_cafe_majada
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 517);
+            this.panel4.Location = new System.Drawing.Point(0, 521);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(214, 16);
@@ -185,13 +185,13 @@ namespace sistema_modular_cafe_majada
             // 
             this.lbl_User.AutoSize = true;
             this.lbl_User.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbl_User.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_User.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_User.ForeColor = System.Drawing.Color.White;
-            this.lbl_User.Location = new System.Drawing.Point(0, 533);
+            this.lbl_User.Location = new System.Drawing.Point(0, 537);
             this.lbl_User.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_User.Name = "lbl_User";
             this.lbl_User.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.lbl_User.Size = new System.Drawing.Size(77, 22);
+            this.lbl_User.Size = new System.Drawing.Size(84, 18);
             this.lbl_User.TabIndex = 0;
             this.lbl_User.Text = "username";
             this.lbl_User.Click += new System.EventHandler(this.lbl_username_Click);
@@ -210,7 +210,7 @@ namespace sistema_modular_cafe_majada
             this.btn_CloseSection.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btn_CloseSection.FlatAppearance.BorderSize = 0;
             this.btn_CloseSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CloseSection.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CloseSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CloseSection.ForeColor = System.Drawing.Color.White;
             this.btn_CloseSection.Image = global::sistema_modular_cafe_majada.Properties.Resources.cerrar_sesion1;
             this.btn_CloseSection.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -230,7 +230,7 @@ namespace sistema_modular_cafe_majada
             this.btn_admin_panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_admin_panel.FlatAppearance.BorderSize = 0;
             this.btn_admin_panel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_admin_panel.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_admin_panel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_admin_panel.ForeColor = System.Drawing.Color.White;
             this.btn_admin_panel.Image = global::sistema_modular_cafe_majada.Properties.Resources.administracion;
             this.btn_admin_panel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -250,7 +250,7 @@ namespace sistema_modular_cafe_majada
             this.btn_reportes.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_reportes.FlatAppearance.BorderSize = 0;
             this.btn_reportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_reportes.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_reportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_reportes.ForeColor = System.Drawing.Color.White;
             this.btn_reportes.Image = global::sistema_modular_cafe_majada.Properties.Resources.impresora;
             this.btn_reportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -270,7 +270,7 @@ namespace sistema_modular_cafe_majada
             this.btn_existenciasCafe.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_existenciasCafe.FlatAppearance.BorderSize = 0;
             this.btn_existenciasCafe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_existenciasCafe.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_existenciasCafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_existenciasCafe.ForeColor = System.Drawing.Color.White;
             this.btn_existenciasCafe.Image = global::sistema_modular_cafe_majada.Properties.Resources.existencias_cafe;
             this.btn_existenciasCafe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -290,7 +290,7 @@ namespace sistema_modular_cafe_majada
             this.btn_principal.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_principal.FlatAppearance.BorderSize = 0;
             this.btn_principal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_principal.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_principal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_principal.ForeColor = System.Drawing.Color.White;
             this.btn_principal.Image = global::sistema_modular_cafe_majada.Properties.Resources.panel;
             this.btn_principal.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

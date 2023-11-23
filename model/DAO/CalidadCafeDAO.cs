@@ -392,5 +392,34 @@ namespace sistema_modular_cafe_majada.model.DAO
             }
         }
 
+        public string ObtenerNombrePorCodigo(int codigo)
+        {
+            string nombre = "Código no encontrado";
+
+            try
+            {
+                conexion.Conectar();
+
+                string consulta = @"SELECT nombre_calidad FROM calidad_cafe WHERE id_calidad = @codigo;";
+                conexion.CrearComando(consulta);
+                conexion.AgregarParametro("@codigo", codigo);
+
+                object result = conexion.EjecutarConsultaEscalar();
+
+                if (result != null)
+                {
+                    nombre = result.ToString();
+                }
+
+                conexion.Desconectar();
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            return nombre;
+        }
+
     }
 }

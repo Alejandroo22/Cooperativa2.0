@@ -210,6 +210,7 @@ namespace sistema_modular_cafe_majada.views
             this.txb_codCalidad.Name = "txb_codCalidad";
             this.txb_codCalidad.Size = new System.Drawing.Size(48, 23);
             this.txb_codCalidad.TabIndex = 16;
+            this.txb_codCalidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_codCalidad_KeyPress);
             // 
             // cbx_subProducto
             // 

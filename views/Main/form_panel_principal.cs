@@ -145,12 +145,12 @@ namespace sistema_modular_cafe_majada
             List<GraficSubPartida> datos = spC.ObtenerCalidadQQsOro(CosechaActual.ICosechaActual);
 
             // Obtener el mes del primer resultado
-            string mes = datos.Count > 0 ? datos[0].Mes : string.Empty;
+           // string mes = datos.Count > 0 ? datos[0].Mes : string.Empty;
 
             // Configurar el tipo de gráfico (en este caso, será un gráfico de columnas, vertical)
             chart1.Series.Clear();
             // Título del gráfico con el mes
-            chart1.Titles.Add($"Cafe QQs Oro Entrada del mes de {mes}");
+            chart1.Titles.Add($"Cafe QQs Oro Entrada ");
 
             // Crear una nueva serie para QQs Oro
             Series serieQQsOro = new Series("QQs Oro");
@@ -163,7 +163,7 @@ namespace sistema_modular_cafe_majada
             foreach (GraficSubPartida sp in datos)
             {
                 serieQQsOro.Points.AddXY(sp.Calidad, sp.cantidad);
-                mes = sp.Mes;
+              //  mes = sp.Mes;
             }
 
             // Agregar la serie al gráfico
@@ -250,12 +250,12 @@ namespace sistema_modular_cafe_majada
             // Calcular la suma total de cantidades
             double sumaTotal = datos.Sum(sp => sp.cantidad);
             // Obtener el mes del primer resultado
-            string mes = datos.Count > 0 ? datos[0].Mes : string.Empty;
+         //   string mes = datos.Count > 0 ? datos[0].Mes : string.Empty;
 
             // Configurar el tipo de gráfico (en este caso, será un gráfico de columnas, vertical)
             chart3.Series.Clear();
             // Título del gráfico con el mes
-            chart3.Titles.Add($"Cafe QQs Oro Entrada del mes de {mes}");
+            chart3.Titles.Add($"Cafe QQs Oro Entrada ");
 
             // Crear una nueva serie para QQs Oro
             Series serieQQsOro = new Series("QQs Oro");

@@ -76,9 +76,11 @@ namespace sistema_modular_cafe_majada.views
             refreshTimer.Elapsed += RefreshTimer_Elapsed;
             refreshTimer.Start();
 
-            txbRestrict = new List<TextBox> { txb_pdasSemana1, txb_pdasSemana2, txb_pdasSemana3, txb_diasPdas1, txb_diasPdas2, txb_diasPdas3,
+            txbRestrict = new List<TextBox> { txb_pdasSemana1, txb_pdasSemana2, txb_pdasSemana3,
                                                 txb_humedad, txb_rendimiento, txb_cantidadQQs, txb_CantidadSaco, txb_horaSalida, txb_horaInicio,
-                                             txb_tiempoSecad };
+                                             txb_tiempoSecad, txb_codProcedencia, txb_codCalidad, txb_codPuntero, txb_codCatador, txb_codUbicacion,
+                                                txb_codSilo, txb_codPesador};
+
 
             RestrictTextBoxNum(txbRestrict);
 
@@ -659,9 +661,9 @@ namespace sistema_modular_cafe_majada.views
                 int num1Semana = string.IsNullOrWhiteSpace(txb_pdasSemana1.Text) ? 0 : Convert.ToInt32(txb_pdasSemana1.Text);
                 int num2Semana = string.IsNullOrWhiteSpace(txb_pdasSemana2.Text) ? 0 : Convert.ToInt32(txb_pdasSemana2.Text);
                 int num3Semana = string.IsNullOrWhiteSpace(txb_pdasSemana3.Text) ? 0 : Convert.ToInt32(txb_pdasSemana3.Text);
-                int dias1SubPartida = string.IsNullOrWhiteSpace(txb_diasPdas1.Text) ? 0 : Convert.ToInt32(txb_diasPdas1.Text);
-                int dias2SubPartida = string.IsNullOrWhiteSpace(txb_diasPdas2.Text) ? 0 : Convert.ToInt32(txb_diasPdas2.Text);
-                int dias3SubPartida = string.IsNullOrWhiteSpace(txb_diasPdas3.Text) ? 0 : Convert.ToInt32(txb_diasPdas3.Text);
+                string dias1SubPartida = string.IsNullOrWhiteSpace(txb_diasPdas1.Text) ? "" : Convert.ToString(txb_diasPdas1.Text);
+                string dias2SubPartida = string.IsNullOrWhiteSpace(txb_diasPdas2.Text) ? "" : Convert.ToString(txb_diasPdas2.Text);
+                string dias3SubPartida = string.IsNullOrWhiteSpace(txb_diasPdas3.Text) ? "" : Convert.ToString(txb_diasPdas3.Text);
                 
                 string fecha1SubPartida = txb_fechaPartd1.Text;
                 string fecha2SubPartida = txb_fechaPartd2.Text;
@@ -1515,25 +1517,13 @@ namespace sistema_modular_cafe_majada.views
 
         private void txb_diasPdas1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            int maxLength = 1;
+            int maxLength = 10;
 
             if (txb_diasPdas1.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true; // Cancelar la entrada si se alcanza la longitud máxima
             }
-            else if (char.IsDigit(e.KeyChar))
-            {
-                int digit = int.Parse(e.KeyChar.ToString());
 
-                if (digit < 1 || digit > 7)
-                {
-                    e.Handled = true; // Cancelar la entrada si el dígito no está en el rango 1 al 7
-                }
-            }
-            else if (!char.IsControl(e.KeyChar))
-            {
-                e.Handled = true; // Cancelar la entrada de caracteres no numéricos y no de control
-            }
         }
 
         private void txb_fechaPartd1_KeyPress(object sender, KeyPressEventArgs e)
@@ -1654,48 +1644,25 @@ namespace sistema_modular_cafe_majada.views
 
         private void txb_diasPdas2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            int maxLength = 1;
+            int maxLength = 50;
 
             if (txb_diasPdas2.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true; // Cancelar la entrada si se alcanza la longitud máxima
             }
-            else if (char.IsDigit(e.KeyChar))
-            {
-                int digit = int.Parse(e.KeyChar.ToString());
 
-                if (digit < 1 || digit > 7)
-                {
-                    e.Handled = true; // Cancelar la entrada si el dígito no está en el rango 1 al 7
-                }
-            }
-            else if (!char.IsControl(e.KeyChar))
-            {
-                e.Handled = true; // Cancelar la entrada de caracteres no numéricos y no de control
-            }
+
         }
 
         private void txb_diasPdas3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            int maxLength = 1;
+            int maxLength = 50;
 
             if (txb_diasPdas3.Text.Length >= maxLength && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true; // Cancelar la entrada si se alcanza la longitud máxima
             }
-            else if (char.IsDigit(e.KeyChar))
-            {
-                int digit = int.Parse(e.KeyChar.ToString());
 
-                if (digit < 1 || digit > 7)
-                {
-                    e.Handled = true; // Cancelar la entrada si el dígito no está en el rango 1 al 7
-                }
-            }
-            else if (!char.IsControl(e.KeyChar))
-            {
-                e.Handled = true; // Cancelar la entrada de caracteres no numéricos y no de control
-            }
         }
 
         private void txb_pdasSemana2_KeyPress(object sender, KeyPressEventArgs e)
@@ -2111,5 +2078,13 @@ namespace sistema_modular_cafe_majada.views
                 }
             }
         }
+
+        private void txb_codCalidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+
+        }
+
+
     }
 }

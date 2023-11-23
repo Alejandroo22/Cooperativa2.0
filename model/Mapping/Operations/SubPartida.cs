@@ -21,9 +21,9 @@ namespace sistema_modular_cafe_majada.model.Mapping.Operations
         public int Num1Semana { get; set; } 
         public int Num2Semana { get; set; } 
         public int Num3Semana { get; set; } 
-        public int Dias1SubPartida { get; set; } 
-        public int Dias2SubPartida { get; set; } 
-        public int Dias3SubPartida { get; set; } 
+        public string Dias1SubPartida { get; set; } 
+        public string Dias2SubPartida { get; set; } 
+        public string Dias3SubPartida { get; set; } 
         public string Fecha1SubPartida { get; set; }
         public string Fecha2SubPartida { get; set; } 
         public string Fecha3SubPartida { get; set; } 
@@ -85,7 +85,7 @@ namespace sistema_modular_cafe_majada.model.Mapping.Operations
         public string NombreCalidadCafe { get; set; }
         public string NombreSubProducto { get; set; }
         public int Num1Semana { get; set; }
-        public int Dias1SubPartida { get; set; }
+        public string Dias1SubPartida { get; set; }
         public string Fecha1SubPartida { get; set; }
         public string ObservacionIdentificacionCafe { get; set; }
         public string FechaSecado { get; set; }

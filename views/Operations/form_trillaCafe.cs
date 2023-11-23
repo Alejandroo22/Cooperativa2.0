@@ -369,7 +369,9 @@ namespace sistema_modular_cafe_majada.views
             SubProductoController subPro = new SubProductoController();
             List<SubProducto> datoSubPro;
 
-            if (imgClickCalidad)
+            string idCalidadtxb = txb_codCalidad.Text.Trim();
+
+            if (int.TryParse(idCalidadtxb, out int idCalidad))
             {
                 datoSubPro = subPro.ObtenerSubProductoPorIdCalidad(CalidadSeleccionada.ICalidadSeleccionada);
             }

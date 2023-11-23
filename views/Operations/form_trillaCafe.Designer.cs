@@ -206,7 +206,7 @@ namespace sistema_modular_cafe_majada.views
             this.txb_codCalidad.Location = new System.Drawing.Point(163, 38);
             this.txb_codCalidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txb_codCalidad.Name = "txb_codCalidad";
-            this.txb_codCalidad.Size = new System.Drawing.Size(48, 23);
+            this.txb_codCalidad.Size = new System.Drawing.Size(48, 27);
             this.txb_codCalidad.TabIndex = 16;
             this.txb_codCalidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_codCalidad_KeyPress);
             // 
@@ -503,6 +503,7 @@ namespace sistema_modular_cafe_majada.views
             this.txb_codPesador.Name = "txb_codPesador";
             this.txb_codPesador.Size = new System.Drawing.Size(63, 27);
             this.txb_codPesador.TabIndex = 1;
+            this.txb_codPesador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_codPesador_KeyPress);
             // 
             // btn_tPesador
             // 

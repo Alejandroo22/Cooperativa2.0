@@ -470,6 +470,42 @@ namespace sistema_modular_cafe_majada.model.DAO
                 conexion.Desconectar();
             }
         }
+        public Personal ObtenerNombrePorCodigo(int codigo)
+        {
+            Personal Idpersonal = null;
+            try
+            {
+                conexion.Conectar();
+
+                string consulta = @"SELECT id_personal, nombre_personal FROM Personal WHERE id_personal = @codigo;";
+                conexion.CrearComando(consulta);
+                conexion.AgregarParametro("@codigo", codigo);
+
+
+
+                using (MySqlDataReader reader = conexion.EjecutarConsultaReader(consulta))
+                {
+                    if (reader.Read())
+                    {
+                        Idpersonal = new Personal()
+                        {
+                            IdPersonal = Convert.ToInt32(reader["id_personal"]),
+                            NombrePersona = Convert.ToString(reader["nombre_personal"]),
+                        };
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error al verificar la existencia de la Calidad_Cafe: " + ex.Message);
+            }
+            finally
+            {
+                // Se cierra la conexión a la base de datos
+                conexion.Desconectar();
+            }
+            return Idpersonal;
+        }
 
     }
 }

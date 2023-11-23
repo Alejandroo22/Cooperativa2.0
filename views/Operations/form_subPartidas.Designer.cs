@@ -252,7 +252,7 @@ namespace sistema_modular_cafe_majada.views
             this.txb_codCalidad.Size = new System.Drawing.Size(65, 24);
             this.txb_codCalidad.TabIndex = 7;
             this.txb_codCalidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txb_codCalidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txb_codCalidad_KeyDown);
+            this.txb_codCalidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_codCalidad_KeyPress);
             // 
             // txb_fechaPartd3
             // 
@@ -614,6 +614,7 @@ namespace sistema_modular_cafe_majada.views
             this.txb_codPuntero.Size = new System.Drawing.Size(54, 24);
             this.txb_codPuntero.TabIndex = 9;
             this.txb_codPuntero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txb_codPuntero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_codPuntero_KeyPress);
             // 
             // btn_puntero
             // 
@@ -875,6 +876,7 @@ namespace sistema_modular_cafe_majada.views
             this.txb_codCatador.Size = new System.Drawing.Size(54, 24);
             this.txb_codCatador.TabIndex = 3;
             this.txb_codCatador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txb_codCatador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_codCatador_KeyPress);
             // 
             // btn_catador
             // 
@@ -1042,6 +1044,7 @@ namespace sistema_modular_cafe_majada.views
             this.txb_codPesador.Size = new System.Drawing.Size(54, 24);
             this.txb_codPesador.TabIndex = 8;
             this.txb_codPesador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txb_codPesador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txb_codPesador_KeyPress);
             // 
             // btn_ubiFisicaCafe
             // 

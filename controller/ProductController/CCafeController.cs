@@ -164,23 +164,20 @@ namespace sistema_modular_cafe_majada.controller.ProductController
             }
         }
 
-        public string ObtenerNombrePorCodigo(int codigo)
+        public CalidadCafe ObtenerNombrePorCodigo(int codigo)
         {
-
-            string nombre = "Código no encontrado";
+            CalidadCafe calidad = new CalidadCafe();
 
             try
             {
                 // Llamada al método del DAO para obtener el nombre por el código
-                nombre = ccafeDAO.ObtenerNombrePorCodigo(codigo);
+                calidad = ccafeDAO.ObtenerNombrePorCodigo(codigo);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ocurrió un error durante la ejecución: " + ex.Message);
+                Console.WriteLine("Ocurrió un error durante la verificacion de la Calidad Cafe en la base de datos: " + ex.Message);
             }
-
-            return nombre;
+            return calidad;
         }
-
     }
 }

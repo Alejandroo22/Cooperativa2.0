@@ -1,6 +1,7 @@
 using Microsoft.Reporting.WinForms;
 using sistema_modular_cafe_majada.controller.InfrastructureController;
 using sistema_modular_cafe_majada.controller.OperationsController;
+using sistema_modular_cafe_majada.controller.ProductController;
 using sistema_modular_cafe_majada.controller.SecurityData;
 using sistema_modular_cafe_majada.controller.UserDataController;
 using sistema_modular_cafe_majada.model.Acces;
@@ -40,7 +41,8 @@ namespace sistema_modular_cafe_majada.views
         public double cantidaQQsActUpdate = 0.00;
         public double cantidaSacoUpdate = 0.00;
         public double cantidaSacoActUpdate = 0.00;
-
+        private CCafeController cCafe = new CCafeController();
+        private PersonalController pPersonal = new PersonalController();
         //variable para refrescar el formulario cad cierto tiempo
         private System.Timers.Timer refreshTimer;
 
@@ -850,7 +852,7 @@ namespace sistema_modular_cafe_majada.views
                             return;
                         }
 
-                        if (almNCM.IdCalidadCafe != CalidadSeleccionada.ICalidadSeleccionada && (cantAct != 0 && cantActSaco != 0))
+                        /*if (almNCM.IdCalidadCafe != CalidadSeleccionada.ICalidadSeleccionada && (cantAct != 0 && cantActSaco != 0))
                         {
                             MessageBox.Show("La Calidad Cafe que se a seleccionado en el formulario no es compatible, La calidad a Agregar al almacen es " + almNCM.NombreCalidadCafe + " y a seleccionado la calidad "
                                 + CalidadSeleccionada.NombreCalidadSeleccionada + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -859,14 +861,14 @@ namespace sistema_modular_cafe_majada.views
                             CalidadSeleccionada.NombreCalidadSeleccionada = "";
                             return;
                         }
-
-                        if (almNCM.IdSubProducto != selectedValue && (cantAct != 0 && cantActSaco != 0))
+                        */
+                       /* if (almNCM.IdSubProducto != selectedValue && (cantAct != 0 && cantActSaco != 0))
                         {
                             MessageBox.Show("El SubProducto Cafe que se a seleccionado en el formulario no es compatible, El SubProducto a Agregar es " + almNCM.NombreSubProducto + " y a seleccionado el SubProducto "
                                 + selectedValueName + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-
+                       */
                         var cantidadCafeC = new CantidadSiloPiñaController();
 
                         CantidadSiloPiña cantidad = new CantidadSiloPiña()
@@ -944,7 +946,7 @@ namespace sistema_modular_cafe_majada.views
                         TipoMovimiento = "Entrada Cafe No.SubPartida " + Convert.ToInt32(txb_subPartida.Text)
                     };
 
-                    if (iCalidadNoUpd != CalidadSeleccionada.ICalidadSeleccionada && CalidadSeleccionada.ICalidadSeleccionada != 0)
+                   /* if (iCalidadNoUpd != CalidadSeleccionada.ICalidadSeleccionada && CalidadSeleccionada.ICalidadSeleccionada != 0)
                     {
                         if (cantObtQQs != actcantidad && cantObtSaco != actcantidadSaco)
                         {
@@ -956,7 +958,7 @@ namespace sistema_modular_cafe_majada.views
                             return;
                         }
                     }
-
+                   */
                     if (cantidaQQsUpdate != cantidaQQsActUpdate || Convert.ToInt32(txb_subPartida.Text) != SubPartidaSeleccionado.NumSubPartida)
                     {
                         if (cantRest < pesoQQs)
@@ -2079,12 +2081,176 @@ namespace sistema_modular_cafe_majada.views
             }
         }
 
-        private void txb_codCalidad_KeyDown(object sender, KeyEventArgs e)
-        {
-            
 
+        private void txb_codCalidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    string codigo = txb_codCalidad.Text.Trim();
+                    int codigoInt;
+
+                    if (int.TryParse(codigo, out codigoInt))
+                    {
+                        // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
+                        CalidadCafe calidad = cCafe.ObtenerNombrePorCodigo(codigoInt);
+
+                        if (calidad != null)
+                        {
+                            // Asignar el nombre al TextBox para mostrar el nombre
+                            txb_calidad.Text = calidad.NombreCalidad;
+                            CalidadSeleccionada.ICalidadSeleccionada = calidad.IdCalidad;
+                            CalidadSeleccionada.NombreCalidadSeleccionada = calidad.NombreCalidad;
+                            imgClickCalidad = true;
+                            CbxSubProducto();
+                        }
+                        else
+                        {
+                            MessageBox.Show("ID no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Manejar el caso en el que el texto no sea un número entero válido
+                        MessageBox.Show("Por favor, ingrese un número entero válido como código.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el nombre: " + ex.Message);
+                MessageBox.Show("Se produjo un error al obtener el nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void txb_codPuntero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            try
+            {
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    string codigo = txb_codPuntero.Text.Trim();
+                    int codigoInt;
 
+                    if (int.TryParse(codigo, out codigoInt))
+                    {
+                        // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
+                        Personal personal = pPersonal.ObtenerNombrePorCodigo(codigoInt);
+                        
+                        if (personal != null)
+                        {
+                            PersonalSeleccionado.TipoPersonal = "eca";
+                            // Asignar el nombre al TextBox para mostrar el nombre
+                            txb_nombrePuntero.Text = personal.NombrePersona;
+                            PersonalSeleccionado.IPersonalPuntero = personal.IdPersonal;
+                            PersonalSeleccionado.NombrePersonalPuntero = personal.NombrePersona;
+                            imgClickCalidad = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("ID no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Manejar el caso en el que el texto no sea un número entero válido
+                        MessageBox.Show("Por favor, ingrese un número entero válido como código.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el nombre: " + ex.Message);
+                MessageBox.Show("Se produjo un error al obtener el nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txb_codCatador_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    string codigo = txb_codCatador.Text.Trim();
+                    int codigoInt;
+
+                    if (int.TryParse(codigo, out codigoInt))
+                    {
+                        // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
+                        Personal personal = pPersonal.ObtenerNombrePorCodigo(codigoInt);
+
+                        if (personal != null)
+                        {
+                            PersonalSeleccionado.TipoPersonal = "ata";
+                            // Asignar el nombre al TextBox para mostrar el nombre
+                            txb_nombreCatador.Text = personal.NombrePersona;
+                            PersonalSeleccionado.IPersonalCatador = personal.IdPersonal;
+                            PersonalSeleccionado.NombrePersonalCatador = personal.NombrePersonal;
+                            imgClickCalidad = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("ID no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Manejar el caso en el que el texto no sea un número entero válido
+                        MessageBox.Show("Por favor, ingrese un número entero válido como código.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el nombre: " + ex.Message);
+                MessageBox.Show("Se produjo un error al obtener el nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txb_codPesador_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            try
+            {
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    string codigo = txb_codPesador.Text.Trim();
+                    int codigoInt;
+
+                    if (int.TryParse(codigo, out codigoInt))
+                    {
+                        // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
+                        Personal personal = pPersonal.ObtenerNombrePorCodigo(codigoInt);
+
+                        if (personal != null)
+                        {
+                            PersonalSeleccionado.TipoPersonal = "esa";
+                            // Asignar el nombre al TextBox para mostrar el nombre
+                            txb_nombrePesador.Text = personal.NombrePersona;
+                            PersonalSeleccionado.IPersonalPesador = personal.IdPersonal;
+                            PersonalSeleccionado.NombrePersonalPesador = personal.NombrePersonal;
+                            imgClickCalidad = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("ID no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Manejar el caso en el que el texto no sea un número entero válido
+                        MessageBox.Show("Por favor, ingrese un número entero válido como código.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el nombre: " + ex.Message);
+                MessageBox.Show("Se produjo un error al obtener el nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

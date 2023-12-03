@@ -395,7 +395,7 @@ namespace sistema_modular_cafe_majada.views
         public void ClearDataTxb()
         {
             List<TextBox> txb = new List<TextBox> {txb_almacen,txb_bodega,txb_calidadCafe,txb_finca,txb_numTrilla,txb_observacion,
-                                                    txb_personal,txb_pesoQQs, txb_pesoSaco};
+                                                    txb_personal,txb_pesoQQs, txb_pesoSaco,txb_codCalidad,txb_codPesador,txb_codCalidad,txb_codPesador};
 
             foreach (TextBox textBox in txb)
             {
@@ -1011,8 +1011,7 @@ namespace sistema_modular_cafe_majada.views
             Label[] labels = { label1, label2,label4, label5,label6,label7, label8,label9,label10,
                                 label11,label12,label13};
             TextBox[] textBoxes = { txb_almacen, txb_bodega, txb_calidadCafe,txb_cosecha,txb_finca,txb_numTrilla,txb_observacion,
-                                    txb_personal,txb_pesoQQs,txb_pesoSaco,txb_codCalidad,txb_codPesador,txb_codProcAlmacenamiento,
-                                    txb_codProcUbicacion,txb_codProdFinca};
+                                    txb_personal,txb_pesoQQs,txb_pesoSaco,txb_codCalidad,txb_codPesador};
             Button[] buttons = { btn_SaveTrilla, btn_Cancel };
             DateTimePicker[] dateTimePickers = { dtp_fechaTrilla };
             ComboBox[] comboBoxes = { cbx_subProducto };

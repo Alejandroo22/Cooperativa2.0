@@ -1041,7 +1041,7 @@ namespace sistema_modular_cafe_majada.views
             Label[] labels = { label1, label2,label3,label4, label5,label6,label7, label8,label9,label10,
                                 label11,label12,label13};
             TextBox[] textBoxes = { txb_almacen, txb_bodega, txb_calidadCafe,txb_cosecha,txb_finca,txb_numSalida,txb_observacion,
-                                    txb_personal,txb_pesoQQs,txb_pesoSaco,txb_codCalidad,txb_codPesador,txb_codAlmacenamiento,txb_codBodega,txb_codProcedencia};
+                                    txb_personal,txb_pesoQQs,txb_pesoSaco,txb_codCalidad,txb_codPesador};
             Button[] buttons = { btn_SaveSalida, btn_Cancel };
             DateTimePicker[] dateTimePickers = { dtp_fechaSalida };
             ComboBox[] comboBoxes = { cbx_subProducto };

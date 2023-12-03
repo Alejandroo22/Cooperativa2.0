@@ -80,8 +80,7 @@ namespace sistema_modular_cafe_majada.views
 
             txbRestrict = new List<TextBox> { txb_pdasSemana1, txb_pdasSemana2, txb_pdasSemana3,
                                                 txb_humedad, txb_rendimiento, txb_cantidadQQs, txb_CantidadSaco, txb_horaSalida, txb_horaInicio,
-                                             txb_tiempoSecad, txb_codProcedencia, txb_codCalidad, txb_codPuntero, txb_codCatador, txb_codUbicacion,
-                                                txb_codSilo, txb_codPesador};
+                                             txb_tiempoSecad, txb_codProcedencia, txb_codCalidad, txb_codPuntero, txb_codCatador, txb_codPesador};
 
 
             RestrictTextBoxNum(txbRestrict);
@@ -1200,7 +1199,8 @@ namespace sistema_modular_cafe_majada.views
                                                     txb_nombrePuntero,txb_observacionSecad,txb_resultadoCatacion,
                                                     txb_nombreCatador,txb_observacionCatador,txb_CantidadSaco,txb_cantidadQQs,
                                                     txb_ubicadoBodega,txb_almacenSiloPiña,txb_nombrePesador,txb_doctoAlmacen,txb_observacionPesa,
-                                                    txb_fechaPartd1,txb_fechaPartd2,txb_fechaPartd3};
+                                                    txb_fechaPartd1,txb_fechaPartd2,txb_fechaPartd3,txb_codCalidad,txb_codCatador,txb_codPesador,txb_codProcedencia,
+                                                    txb_codPuntero};
 
             foreach (TextBox textBox in txb)
             {
@@ -1873,7 +1873,7 @@ namespace sistema_modular_cafe_majada.views
                                     txb_horaInicio,txb_horaSalida,txb_humedad,txb_nombreCatador,txb_nombrePesador,txb_nombrePuntero,
                                     txb_observacionCafe,txb_observacionCatador,txb_observacionPesa,txb_observacionSecad,txb_pdasSemana1,
                                     txb_pdasSemana2,txb_pdasSemana3,txb_procedencia,txb_rendimiento,txb_resultadoCatacion,txb_subPartida,txb_tiempoSecad,
-                                    txb_ubicadoBodega,txb_codCalidad,txb_codProcedencia,txb_codPuntero,txb_codCatador,txb_codPesador,txb_codUbicacion,txb_codSilo};
+                                    txb_ubicadoBodega,txb_codCalidad,txb_codProcedencia,txb_codPuntero,txb_codCatador,txb_codPesador};
             Button[] buttons = { btn_SaveUser, btn_Cancel };
             ComboBox[] comboBoxes = {cbx_subProducto };
             DateTimePicker[] dateTimePickers = {dtp_fechaCatacion,dtp_fechaInicioSecad,dtp_fechaPesa,dtp_fechaSalidaSecad,

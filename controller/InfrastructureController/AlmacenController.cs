@@ -168,12 +168,12 @@ namespace sistema_modular_cafe_majada.controller.InfrastructureController
         }
         
         //
-        public bool ActualizarCantidadEntradaCafeAlmacen(int idAlmacen, double cantidad, double cantidadSaco, int iCalidad, int iSubProd)
+        public bool ActualizarCantidadEntradaCafeAlmacen(int idAlmacen, double cantidad, double cantidadSaco, int iCalidad)
         {
             try
             {
                 // Llamada al método del DAO para actualizar la Almacens
-                return almacenDAO.ActualizarCantidadEntradaCafeAlmacen(idAlmacen, cantidad, cantidadSaco, iCalidad, iSubProd);
+                return almacenDAO.ActualizarCantidadEntradaCafeAlmacen(idAlmacen, cantidad, cantidadSaco, iCalidad);
             }
             catch (Exception ex)
             {
@@ -183,12 +183,12 @@ namespace sistema_modular_cafe_majada.controller.InfrastructureController
         }
         
         //
-        public bool ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(int idAlmacen, double cantidadNu, double cantidadNuSaco, int iCalidad, int iSubPro)
+        public bool ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(int idAlmacen, double cantidadNu, double cantidadNuSaco, int iCalidad)
         {
             try
             {
                 // Llamada al método del DAO para actualizar la Almacens
-                return almacenDAO.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(idAlmacen, cantidadNu, cantidadNuSaco, iCalidad, iSubPro );
+                return almacenDAO.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(idAlmacen, cantidadNu, cantidadNuSaco, iCalidad);
             }
             catch (Exception ex)
             {

@@ -771,6 +771,7 @@ namespace sistema_modular_cafe_majada.views
                 // Crear una instancia de la clase SubPartida con los valores obtenidos
                 SubPartida subPart = new SubPartida()
                 {
+                  
                     // Asignar los valores a las propiedades de la instancia
                     IdSubpartida = iSubPartida,
                     NumeroSubpartida = subPartida,
@@ -805,10 +806,13 @@ namespace sistema_modular_cafe_majada.views
                     IdPunteroSecador = iSecador,
                     NombrePunteroSecador = nombrePunteroSecador,
                     ObservacionSecado = observacionSecado,
+
                     IdCatador = iCatador,
-                    NombreCatador = resultadoCatador,
+                    NombreCatador = txb_nombreCatador.Text,
                     FechaCatacion = fechaCatacion,
                     ObservacionCatador = observacionCatador,
+                    ResultadoCatador = resultadoCatador,
+
                     FechaPesado = fechaPesado,
                     PesaSaco = pesoSaco,
                     PesaQQs = pesoQQs,
@@ -852,7 +856,7 @@ namespace sistema_modular_cafe_majada.views
                             return;
                         }
 
-                        /*if (almNCM.IdCalidadCafe != CalidadSeleccionada.ICalidadSeleccionada && (cantAct != 0 && cantActSaco != 0))
+                        if (almNCM.IdCalidadCafe != CalidadSeleccionada.ICalidadSeleccionada && (cantAct != 0 && cantActSaco != 0))
                         {
                             MessageBox.Show("La Calidad Cafe que se a seleccionado en el formulario no es compatible, La calidad a Agregar al almacen es " + almNCM.NombreCalidadCafe + " y a seleccionado la calidad "
                                 + CalidadSeleccionada.NombreCalidadSeleccionada + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -861,7 +865,7 @@ namespace sistema_modular_cafe_majada.views
                             CalidadSeleccionada.NombreCalidadSeleccionada = "";
                             return;
                         }
-                        */
+                        
                        /* if (almNCM.IdSubProducto != selectedValue && (cantAct != 0 && cantActSaco != 0))
                         {
                             MessageBox.Show("El SubProducto Cafe que se a seleccionado en el formulario no es compatible, El SubProducto a Agregar es " + almNCM.NombreSubProducto + " y a seleccionado el SubProducto "
@@ -878,6 +882,7 @@ namespace sistema_modular_cafe_majada.views
                             CantidadCafe = pesoQQs,
                             CantidadCafeSaco = pesoSaco,
                             TipoMovimiento = "Entrada Cafe No.SubPartida " + subPartida,
+                            IdSubProducto = selectedValue,
                             IdAlmacenSiloPiña = iAlmacen
                         };
                         
@@ -896,7 +901,7 @@ namespace sistema_modular_cafe_majada.views
 
                             double resultCa = actcantidad + pesoQQs; 
                             double resultCaSaco = actcantidadSaco + pesoSaco; 
-                            almacenC.ActualizarCantidadEntradaCafeAlmacen(iAlmacen, resultCa, resultCaSaco, iCalidad, selectedValue);
+                            almacenC.ActualizarCantidadEntradaCafeAlmacen(iAlmacen, resultCa, resultCaSaco, iCalidad);
                             
                             try
                             {
@@ -943,10 +948,11 @@ namespace sistema_modular_cafe_majada.views
                         CantidadCafe = cantidaQQsActUpdate,
                         CantidadCafeSaco = cantidaSacoActUpdate,
                         IdAlmacenSiloPiña = cantUpd.IdAlmacenSiloPiña,
+                        IdSubProducto = selectedValue,
                         TipoMovimiento = "Entrada Cafe No.SubPartida " + Convert.ToInt32(txb_subPartida.Text)
                     };
 
-                   /* if (iCalidadNoUpd != CalidadSeleccionada.ICalidadSeleccionada && CalidadSeleccionada.ICalidadSeleccionada != 0)
+                    if (iCalidadNoUpd != CalidadSeleccionada.ICalidadSeleccionada && CalidadSeleccionada.ICalidadSeleccionada != 0)
                     {
                         if (cantObtQQs != actcantidad && cantObtSaco != actcantidadSaco)
                         {
@@ -958,8 +964,8 @@ namespace sistema_modular_cafe_majada.views
                             return;
                         }
                     }
-                   */
-                    if (cantidaQQsUpdate != cantidaQQsActUpdate || Convert.ToInt32(txb_subPartida.Text) != SubPartidaSeleccionado.NumSubPartida)
+                   
+                    if (cantidaQQsUpdate != cantidaQQsActUpdate || Convert.ToInt32(txb_subPartida.Text) != SubPartidaSeleccionado.NumSubPartida || selectedValue != cantUpd.IdSubProducto)
                     {
                         if (cantRest < pesoQQs)
                         {
@@ -989,14 +995,14 @@ namespace sistema_modular_cafe_majada.views
                             if(cantUpd.IdAlmacenSiloPiña != iAlmacen)
                             {
                                 //no actualiza los id unicamnete la cantidad restara ya que detecto que el almacen es diferente 
-                                almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(cantUpd.IdAlmacenSiloPiña, resultCaNoUpd, resultCaNoUpdSaco, iCalidad, selectedValue);
+                                almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(cantUpd.IdAlmacenSiloPiña, resultCaNoUpd, resultCaNoUpdSaco, iCalidad);
                                 //cambia los nuevos datos ya que detecto que el almacen cambio 
-                                almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(iAlmacen, resultCaUpd, resultCaUpdSaco, iCalidad, selectedValue);
+                                almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(iAlmacen, resultCaUpd, resultCaUpdSaco, iCalidad);
 
                             }
                             else
                             {
-                                almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(cantUpd.IdAlmacenSiloPiña, resultCaUpd, resultCaUpdSaco, iCalidad, selectedValue);
+                                almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(cantUpd.IdAlmacenSiloPiña, resultCaUpd, resultCaUpdSaco, iCalidad);
 
                             }
                         }
@@ -1307,7 +1313,7 @@ namespace sistema_modular_cafe_majada.views
 
                         double resultCaUpd = actcantidad - cantidaQQsUpdate;
                         double resultCaUpdSaco = actcantidadSaco - cantidaSacoUpdate;
-                        almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(iAlmacen, resultCaUpd, resultCaUpdSaco, iCalidad, selectedValue);
+                        almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(iAlmacen, resultCaUpd, resultCaUpdSaco, iCalidad);
 
                         cantidadCafeC.EliminarCantidadSiloPiña(cantUpd.IdCantidadCafe);
 
@@ -2102,6 +2108,7 @@ namespace sistema_modular_cafe_majada.views
                             // Asignar el nombre al TextBox para mostrar el nombre
                             txb_calidad.Text = calidad.NombreCalidad;
                             CalidadSeleccionada.ICalidadSeleccionada = calidad.IdCalidad;
+                            iCalidad = CalidadSeleccionada.ICalidadSeleccionada;
                             CalidadSeleccionada.NombreCalidadSeleccionada = calidad.NombreCalidad;
                             imgClickCalidad = true;
                             CbxSubProducto();
@@ -2146,6 +2153,7 @@ namespace sistema_modular_cafe_majada.views
                             // Asignar el nombre al TextBox para mostrar el nombre
                             txb_nombrePuntero.Text = personal.NombrePersona;
                             PersonalSeleccionado.IPersonalPuntero = personal.IdPersonal;
+                            iSecador =  PersonalSeleccionado.IPersonalPuntero;
                             PersonalSeleccionado.NombrePersonalPuntero = personal.NombrePersona;
                             imgClickCalidad = true;
                         }
@@ -2189,6 +2197,7 @@ namespace sistema_modular_cafe_majada.views
                             // Asignar el nombre al TextBox para mostrar el nombre
                             txb_nombreCatador.Text = personal.NombrePersona;
                             PersonalSeleccionado.IPersonalCatador = personal.IdPersonal;
+                            iCatador = PersonalSeleccionado.IPersonalCatador;
                             PersonalSeleccionado.NombrePersonalCatador = personal.NombrePersonal;
                             imgClickCalidad = true;
                         }
@@ -2232,6 +2241,7 @@ namespace sistema_modular_cafe_majada.views
                             // Asignar el nombre al TextBox para mostrar el nombre
                             txb_nombrePesador.Text = personal.NombrePersona;
                             PersonalSeleccionado.IPersonalPesador = personal.IdPersonal;
+                            iPesador = PersonalSeleccionado.IPersonalPesador;
                             PersonalSeleccionado.NombrePersonalPesador = personal.NombrePersonal;
                             imgClickCalidad = true;
                         }
@@ -2273,6 +2283,9 @@ namespace sistema_modular_cafe_majada.views
                         {
                             // Asignar el nombre al TextBox para mostrar el nombre
                             txb_procedencia.Text = maquinaria.NombreMaquinaria;
+                            ProcedenciaSeleccionada.IProcedencia = maquinaria.IdMaquinaria;
+                            iProcedencia = ProcedenciaSeleccionada.IProcedencia ;
+                            ProcedenciaSeleccionada.NombreProcedencia = maquinaria.NombreMaquinaria;
                             imgClickCalidad = true;
                         }
                         else

@@ -15,6 +15,8 @@ namespace sistema_modular_cafe_majada.model.Mapping.Operations
         public string TipoMovimiento { get; set; }
         public int IdAlmacenSiloPiña { get; set; }
         public string NombreAlmacen { get; set; }
+        public int? IdSubProducto { get; set; }
+        public string NombreSubProducto { get; set; }
         public int IdCosechaCantidad { get; set; }
         public string NombreCosechaCantidad { get; set; }
     }

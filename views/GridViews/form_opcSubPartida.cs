@@ -160,7 +160,7 @@ namespace sistema_modular_cafe_majada.views
                 CantidadSaco = string.IsNullOrWhiteSpace(almacen.CantidadActualSacoAlmacen.ToString()) ? 0.0 : almacen.CantidadActualSacoAlmacen,
                 Ubicacion = almacen.UbicacionAlmacen,
                 Calidad = almacen.NombreCalidadCafe ?? "",
-                SubProducto = almacen.NombreSubProducto ?? "",
+                //SubProducto = almacen.NombreSubProducto ?? "",
                 Bodega = almacen.NombreBodegaUbicacion
             }).ToList();
 
@@ -275,6 +275,7 @@ namespace sistema_modular_cafe_majada.views
                         //Procedencia
                         {
                             // Obtener los valores de las celdas de la fila seleccionada
+                            Console.WriteLine("Id de procedencia " + Convert.ToInt32(filaSeleccionada.Cells["ID"].Value) + "Nombre de la procedencia " + filaSeleccionada.Cells["Nombre"].Value.ToString());
                             ProcedenciaSeleccionada.IProcedencia = Convert.ToInt32(filaSeleccionada.Cells["ID"].Value);
                             ProcedenciaSeleccionada.NombreProcedencia = filaSeleccionada.Cells["Nombre"].Value.ToString();
                         }
@@ -363,8 +364,8 @@ namespace sistema_modular_cafe_majada.views
             switch (opc)
             {
                 case 1:
+                    //SubPartida
                     {
-                        //SubPartida
                         if (string.IsNullOrWhiteSpace(text.Text) || text.Text == "Buscar...")
                         {
                             //funcion para mostrar de inicio los datos en el dataGrid
@@ -398,8 +399,8 @@ namespace sistema_modular_cafe_majada.views
                     }
                     break;
                 case 2:
+                    //Procedencia
                     {
-                        //Procedencia
                         if (string.IsNullOrWhiteSpace(text.Text) || text.Text == "Buscar...")
                         {
                             //funcion para mostrar de inicio los datos en el dataGrid
@@ -579,7 +580,7 @@ namespace sistema_modular_cafe_majada.views
                                 CantidadSaco = string.IsNullOrWhiteSpace(almacen.CantidadActualSacoAlmacen.ToString()) ? 0.0 : almacen.CantidadActualSacoAlmacen,
                                 Ubicacion = almacen.UbicacionAlmacen,
                                 Calidad = almacen.NombreCalidadCafe ?? "",
-                                SubProducto = almacen.NombreSubProducto ?? "",
+                                //SubProducto = almacen.NombreSubProducto ?? "",
                                 Bodega = almacen.NombreBodegaUbicacion
                             }).ToList();
 

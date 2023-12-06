@@ -137,7 +137,7 @@ namespace sistema_modular_cafe_majada.model.DAO
                             CantidadActualSacoAlmacen = (reader["cantidad_actual_saco_almacen"] is DBNull ? 0.0 : Convert.ToDouble(reader["cantidad_actual_saco_almacen"])),
                             UbicacionAlmacen = Convert.ToString(reader["ubicacion_almacen"]),
                             IdBodegaUbicacion = Convert.ToInt32(reader["id_bodega_ubicacion_almacen"]),
-                            IdSubProducto = (reader["id_subproducto_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
+                            //IdSubProducto = (reader["id_subproducto_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
                             IdCalidadCafe = (reader["id_calidad_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_calidad_cafe"])
                         };
                     }
@@ -571,11 +571,11 @@ namespace sistema_modular_cafe_majada.model.DAO
             {
                 conexion.Conectar();
 
-                string consulta = @"SELECT a.*, cc.nombre_calidad, sp.nombre_subproducto
-                                    FROM Almacen a 
-                                    LEFT JOIN Calidad_Cafe cc ON a.id_calidad_cafe = cc.id_calidad
-                                    LEFT JOIN SubProducto sp ON a.id_subproducto_cafe = sp.id_subproducto
-                                    WHERE id_almacen = @id";
+                string consulta = @"SELECT a.*, cc.nombre_calidad "  //, sp.nombre_subproducto
+                                    +@"FROM Almacen a 
+                                    LEFT JOIN Calidad_Cafe cc ON a.id_calidad_cafe = cc.id_calidad "
+                                    //LEFT JOIN SubProducto sp ON a.id_subproducto_cafe = sp.id_subproducto
+                                    +@"WHERE id_almacen = @id";
 
                 conexion.CrearComando(consulta);
 
@@ -591,8 +591,8 @@ namespace sistema_modular_cafe_majada.model.DAO
                             IdAlmacen = Convert.ToInt32(reader["id_almacen"]),
                             IdCalidadCafe = (reader["id_calidad_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_calidad_cafe"]),
                             NombreCalidadCafe = (reader["nombre_calidad"]) is DBNull ? "" : Convert.ToString(reader["nombre_calidad"]),
-                            IdSubProducto = (reader["id_subproducto_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
-                            NombreSubProducto = (reader["nombre_subproducto"]) is DBNull ? "" : Convert.ToString(reader["nombre_subproducto"]),
+                            //IdSubProducto = (reader["id_subproducto_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
+                            //NombreSubProducto = (reader["nombre_subproducto"]) is DBNull ? "" : Convert.ToString(reader["nombre_subproducto"]),
                             CapacidadAlmacen = Convert.ToDouble(reader["capacidad_almacen"]),
                             CantidadActualAlmacen = (reader["cantidad_actual_almacen"] is DBNull ? 0.0 : Convert.ToDouble(reader["cantidad_actual_almacen"])),
                             CantidadActualSacoAlmacen = (reader["cantidad_actual_saco_almacen"] is DBNull ? 0.0 : Convert.ToDouble(reader["cantidad_actual_saco_almacen"]))
@@ -612,7 +612,7 @@ namespace sistema_modular_cafe_majada.model.DAO
         }
 
         //funcion para actualizar el registro de catidades en la base de datos
-        public bool ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(int idAlmacen, double cantidadNueva, double cantidadNuevaSaco, int idCalidad, int isubProducto)
+        public bool ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(int idAlmacen, double cantidadNueva, double cantidadNuevaSaco, int idCalidad)
         {
             bool exito = false;
 
@@ -622,15 +622,15 @@ namespace sistema_modular_cafe_majada.model.DAO
                 conexion.Conectar();
 
                 //se crea el script SQL 
-                string consulta = @"UPDATE Almacen SET cantidad_actual_almacen = @cantidadNu, cantidad_actual_saco_almacen = @cantidadNuSaco, id_calidad_cafe = @iCalidad, id_subproducto_cafe = @iSubProd
+                string consulta = @"UPDATE Almacen SET cantidad_actual_almacen = @cantidadNu, cantidad_actual_saco_almacen = @cantidadNuSaco, id_calidad_cafe = @iCalidad
                                     WHERE id_almacen = @id";
+                //id_subproducto_cafe = @iSubProd
                 conexion.CrearComando(consulta);
 
                 conexion.AgregarParametro("@cantidadNu", cantidadNueva);
                 conexion.AgregarParametro("@cantidadNuSaco", cantidadNuevaSaco);
                 conexion.AgregarParametro("@iCalidad", idCalidad);
                 conexion.AgregarParametro("@id", idAlmacen);
-                conexion.AgregarParametro("@iSubProd", isubProducto);
 
                 int filasAfectadas = conexion.EjecutarInstruccion();
 
@@ -702,7 +702,7 @@ namespace sistema_modular_cafe_majada.model.DAO
         }
         
         //funcion para actualizar el registro de catidades en la base de datos
-        public bool ActualizarCantidadEntradaCafeAlmacen(int idAlmacen, double cantidad, double cantidadSaco, int idCalidad, int iSubProd)
+        public bool ActualizarCantidadEntradaCafeAlmacen(int idAlmacen, double cantidad, double cantidadSaco, int idCalidad)
         {
             bool exito = false;
             Console.WriteLine("Depuracion - cantidad obtenida a actualizar " + cantidad);
@@ -712,14 +712,15 @@ namespace sistema_modular_cafe_majada.model.DAO
                 conexion.Conectar();
 
                 //se crea el script SQL 
-                string consulta = @"UPDATE Almacen SET cantidad_actual_almacen = @cantidad, cantidad_actual_saco_almacen = @cantidadSaco, id_calidad_cafe = @iCalidad, id_subproducto_cafe = @iSubProd
+                string consulta = @"UPDATE Almacen SET cantidad_actual_almacen = @cantidad, cantidad_actual_saco_almacen = @cantidadSaco, id_calidad_cafe = @iCalidad
                                     WHERE id_almacen = @id";
+                //, id_subproducto_cafe = @iSubProd
                 conexion.CrearComando(consulta);
 
                 conexion.AgregarParametro("@cantidad", cantidad);
                 conexion.AgregarParametro("@cantidadSaco", cantidadSaco);
                 conexion.AgregarParametro("@iCalidad", idCalidad);
-                conexion.AgregarParametro("@iSubProd", iSubProd);
+                //conexion.AgregarParametro("@iSubProd", iSubProd);
                 conexion.AgregarParametro("@id", idAlmacen);
 
                 int filasAfectadas = conexion.EjecutarInstruccion();
@@ -759,13 +760,14 @@ namespace sistema_modular_cafe_majada.model.DAO
                 conexion.Conectar();
 
                 // Crear la consulta SQL para obtener el rol
-                string consulta = @"SELECT a.*, b.nombre_bodega, c.nombre_calidad, sp.nombre_subproducto
-                                        FROM Almacen a
+                string consulta = @"SELECT a.*, b.nombre_bodega, c.nombre_calidad "
+                                    + @"FROM Almacen a
                                         LEFT JOIN Bodega_Cafe b ON a.id_bodega_ubicacion_almacen = b.id_bodega
-                                        LEFT JOIN Calidad_Cafe c ON a.id_calidad_cafe = c.id_calidad  
-                                        LEFT JOIN SubProducto sp ON a.id_subproducto_cafe = sp.id_subproducto";  
-                /*WHERE ((id_calidad_cafe = @id or id_calidad_cafe IS NULL) AND (cantidad_actual_almacen IS NULL OR cantidad_actual_almacen < capacidad_almacen or 0.0))
-                    OR (id_calidad_cafe <> @id AND (cantidad_actual_almacen = 0.0 or cantidad_actual_almacen IS NULL))";*/
+                                        LEFT JOIN Calidad_Cafe c ON a.id_calidad_cafe = c.id_calidad "
+                                    + @"WHERE ((id_calidad_cafe = @id or id_calidad_cafe IS NULL) AND 
+                                        (cantidad_actual_almacen IS NULL OR cantidad_actual_almacen < capacidad_almacen or 0.0))
+                                        OR (id_calidad_cafe <> @id AND (cantidad_actual_almacen = 0.0 or cantidad_actual_almacen IS NULL))";
+
 
                 conexion.CrearComando(consulta);
                 conexion.AgregarParametro("@id", id);
@@ -784,8 +786,6 @@ namespace sistema_modular_cafe_majada.model.DAO
                             UbicacionAlmacen = Convert.ToString(reader["ubicacion_almacen"]),
                             IdBodegaUbicacion = Convert.ToInt32(reader["id_bodega_ubicacion_almacen"]),
                             NombreBodegaUbicacion = Convert.ToString(reader["nombre_bodega"]),
-                            IdSubProducto = (reader["id_subproducto_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
-                            NombreSubProducto = (reader["nombre_subproducto"]) is DBNull ? "" : Convert.ToString(reader["nombre_subproducto"]),
                             CantidadActualAlmacen = (reader["cantidad_actual_almacen"] is DBNull ? 0.0 : Convert.ToDouble(reader["cantidad_actual_almacen"])),
                             CantidadActualSacoAlmacen = (reader["cantidad_actual_saco_almacen"] is DBNull ? 0.0 : Convert.ToDouble(reader["cantidad_actual_saco_almacen"])),
                             IdCalidadCafe = reader["id_calidad_cafe"] is DBNull ? (int?)null : Convert.ToInt32(reader["id_calidad_cafe"]),
@@ -820,12 +820,12 @@ namespace sistema_modular_cafe_majada.model.DAO
                 conexion.Conectar();
 
                 // Crear la consulta SQL para obtener el rol
-                string consulta = @"SELECT a.*, b.nombre_bodega, c.nombre_calidad, sp.nombre_subproducto
-                                        FROM Almacen a
+                string consulta = @"SELECT a.*, b.nombre_bodega, c.nombre_calidad " // , sp.nombre_subproducto
+                                        +@"FROM Almacen a
                                         LEFT JOIN Bodega_Cafe b ON a.id_bodega_ubicacion_almacen = b.id_bodega
-                                        LEFT JOIN Calidad_Cafe c ON a.id_calidad_cafe = c.id_calidad
-                                        LEFT JOIN SubProducto sp ON a.id_subproducto_cafe = sp.id_subproducto
-                                        WHERE a.id_bodega_ubicacion_almacen LIKE CONCAT('%', @search, '%')";
+                                        LEFT JOIN Calidad_Cafe c ON a.id_calidad_cafe = c.id_calidad "
+                                        //LEFT JOIN SubProducto sp ON a.id_subproducto_cafe = sp.id_subproducto
+                                        +@"WHERE a.id_bodega_ubicacion_almacen LIKE CONCAT('%', @search, '%')";
                 /*AND ((id_calidad_cafe = @id or id_calidad_cafe IS NULL) AND (cantidad_actual_almacen IS NULL OR cantidad_actual_almacen < capacidad_almacen or 0.0))
                 OR (id_calidad_cafe <> @id AND (cantidad_actual_almacen = 0.0 or cantidad_actual_almacen IS NULL))";*/
 
@@ -846,8 +846,8 @@ namespace sistema_modular_cafe_majada.model.DAO
                             UbicacionAlmacen = Convert.ToString(reader["ubicacion_almacen"]),
                             IdBodegaUbicacion = Convert.ToInt32(reader["id_bodega_ubicacion_almacen"]),
                             NombreBodegaUbicacion = Convert.ToString(reader["nombre_bodega"]),
-                            IdSubProducto = (reader["id_subproducto_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
-                            NombreSubProducto = (reader["nombre_subproducto"]) is DBNull ? "" : Convert.ToString(reader["nombre_subproducto"]),
+                            //IdSubProducto = (reader["id_subproducto_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
+                            //NombreSubProducto = (reader["nombre_subproducto"]) is DBNull ? "" : Convert.ToString(reader["nombre_subproducto"]),
                             CantidadActualAlmacen = (reader["cantidad_actual_almacen"] is DBNull ? 0.0 : Convert.ToDouble(reader["cantidad_actual_almacen"])),
                             CantidadActualSacoAlmacen = (reader["cantidad_actual_saco_almacen"] is DBNull ? 0.0 : Convert.ToDouble(reader["cantidad_actual_saco_almacen"])),
                             IdCalidadCafe = reader["id_calidad_cafe"] is DBNull ? (int?)null : Convert.ToInt32(reader["id_calidad_cafe"]),

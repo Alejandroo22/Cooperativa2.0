@@ -546,6 +546,42 @@ namespace sistema_modular_cafe_majada.model.DAO
                 conexion.Desconectar();
             }
         }
+        public Maquinaria ObtenerNombrePorCodigo(int codigo)
+        {
+            Maquinaria IdMaquinaria = null;
+            try
+            {
+                conexion.Conectar();
+
+                string consulta = @"SELECT id_maquinaria, nombre_maquinaria FROM Maquinaria WHERE id_maquinaria = @codigo;";
+                conexion.CrearComando(consulta);
+                conexion.AgregarParametro("@codigo", codigo);
+
+
+
+                using (MySqlDataReader reader = conexion.EjecutarConsultaReader(consulta))
+                {
+                    if (reader.Read())
+                    {
+                        IdMaquinaria = new Maquinaria()
+                        {
+                            IdMaquinaria = Convert.ToInt32(reader["id_maquinaria"]),
+                            NombreMaquinaria = Convert.ToString(reader["nombre_maquinaria"]),
+                        };
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error al verificar la existencia de la Maquinaria: " + ex.Message);
+            }
+            finally
+            {
+                // Se cierra la conexión a la base de datos
+                conexion.Desconectar();
+            }
+            return IdMaquinaria;
+        }
 
     }
 }

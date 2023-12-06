@@ -43,6 +43,7 @@ namespace sistema_modular_cafe_majada.views
         public double cantidaSacoActUpdate = 0.00;
         private CCafeController cCafe = new CCafeController();
         private PersonalController pPersonal = new PersonalController();
+        private MaquinariaController mMaquinaria = new MaquinariaController();
         //variable para refrescar el formulario cad cierto tiempo
         private System.Timers.Timer refreshTimer;
 
@@ -2232,6 +2233,46 @@ namespace sistema_modular_cafe_majada.views
                             txb_nombrePesador.Text = personal.NombrePersona;
                             PersonalSeleccionado.IPersonalPesador = personal.IdPersonal;
                             PersonalSeleccionado.NombrePersonalPesador = personal.NombrePersonal;
+                            imgClickCalidad = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("ID no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Manejar el caso en el que el texto no sea un número entero válido
+                        MessageBox.Show("Por favor, ingrese un número entero válido como código.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el nombre: " + ex.Message);
+                MessageBox.Show("Se produjo un error al obtener el nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txb_codProcedencia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    string codigo = txb_codProcedencia.Text.Trim();
+                    int codigoInt;
+
+                    if (int.TryParse(codigo, out codigoInt))
+                    {
+                        // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
+                        Maquinaria maquinaria = mMaquinaria.ObtenerNombrePorCodigo(codigoInt);
+
+                        if (maquinaria != null)
+                        {
+                            // Asignar el nombre al TextBox para mostrar el nombre
+                            txb_procedencia.Text = maquinaria.NombreMaquinaria;
                             imgClickCalidad = true;
                         }
                         else

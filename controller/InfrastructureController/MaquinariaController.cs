@@ -62,7 +62,24 @@ namespace sistema_modular_cafe_majada.controller.InfrastructureController
                 return null;
             }
         }
-        
+
+        public Maquinaria ObtenerNombrePorCodigo(int codigo)
+        {
+            Maquinaria maquinaria = null;
+
+            try
+            {
+                // Llamada al método del DAO para obtener el rol
+                maquinaria = maquinariaDAO.ObtenerNombrePorCodigo(codigo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error al obtener el nombre de maquinaria: " + ex.Message);
+            }
+
+            return maquinaria;
+        }
+
         //
         public Maquinaria CountMaquinaria()
         {

@@ -57,23 +57,22 @@ namespace sistema_modular_cafe_majada.model.DAO
                                         Calidad_Cafe c ON a.id_calidad_cafe = c.id_calidad
                                     JOIN
                                         Bodega_Cafe b ON a.id_bodega_ubicacion_almacen = b.id_bodega
-                                    JOIN
-                                        SubProducto sp ON a.id_subproducto_cafe = sp.id_subproducto
                                     LEFT JOIN
                                         CantidadCafe_Silo_Piña ccsp ON ccsp.id_almacen_silo_piña = a.id_almacen
+                                    JOIN
+                                        SubProducto sp ON ccsp.id_subproducto_cafe = sp.id_subproducto  -- Ajuste de la relación
                                     WHERE
                                         ccsp.id_cosecha_cantidad = @id_cosecha
                                     GROUP BY
                                         a.id_calidad_cafe,
                                         c.nombre_calidad,
-                                        sp.nombre_subproducto,
+                                        sp.nombre_subproducto,  -- Ajuste del GROUP BY
                                         almacenado_en,
-
                                         a.id_almacen
                                     ORDER BY
-	                                    id_calidad_cafe,
-	                                    nombre_calidad,
-	                                    nombre_subproducto,
+                                        id_calidad_cafe,
+                                        nombre_calidad,
+                                        nombre_subproducto,
                                         almacenado_en;
             ";
 
@@ -300,10 +299,10 @@ namespace sistema_modular_cafe_majada.model.DAO
                     Calidad_Cafe c ON a.id_calidad_cafe = c.id_calidad
                 JOIN
                     Bodega_Cafe b ON a.id_bodega_ubicacion_almacen = b.id_bodega
-                JOIN
-                    SubProducto sp ON a.id_subproducto_cafe = sp.id_subproducto
                 LEFT JOIN
                     CantidadCafe_Silo_Piña ccsp ON ccsp.id_almacen_silo_piña = a.id_almacen
+                JOIN
+                    SubProducto sp ON ccsp.id_subproducto_cafe = sp.id_subproducto  -- Corrección de la relación
                 WHERE
                     ccsp.id_cosecha_cantidad = @id_cosecha
                 GROUP BY

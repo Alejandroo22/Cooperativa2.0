@@ -73,6 +73,34 @@ namespace sistema_modular_cafe_majada.controller.OperationsController
                 return null;
             }
         }
+        
+        public List<CantidadSiloPiña> ObtenerSubProductoSiloPiña(int idAlmacen)
+        {
+            try
+            {
+                // Llamada al método del DAO para obtener una cantidad específica de café en el silo/piña por su nombre de almacén
+                return cantidadDAO.ObtenerListaSubProductosSiloPiña(idAlmacen);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener la cantidad de café en el silo/piña por su nombre de almacén: " + ex.Message);
+                return new List<CantidadSiloPiña>();
+            }
+        }
+
+        public CantidadSiloPiña ObtenerCantidadSubProductoSiloPiña(int iCosecha, int iAlmacen, int iSubProducto)
+        {
+            try
+            {
+                // Llamada al método del DAO para obtener una cantidad específica de café en el silo/piña por su nombre de almacén
+                return cantidadDAO.ObtenerCantidadSubProductoSiloPiña(iCosecha, iAlmacen, iSubProducto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener la cantidad de café en el silo/piña por su subProducto: " + ex.Message);
+                return null;
+            }
+        }
 
         public List<CantidadSiloPiña> ObtenerCantidadNombreSiloPiña()
         {
@@ -142,6 +170,21 @@ namespace sistema_modular_cafe_majada.controller.OperationsController
                 Console.WriteLine("Error al eliminar la cantidad de café en el silo/piña por su ID: " + ex.Message);
             }
         }
+
+        public bool VerificarRegistroExistenteDestino(int idAlmacen, int selectedSubproducto)
+        {
+            try
+            {
+                // Llamada al método del DAO para actualizar una cantidad de café en el silo/piña
+                return cantidadDAO.VerificarRegistroExistente(idAlmacen, selectedSubproducto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al verificar registros existentes: " + ex.Message);
+                return false;
+            }
+        }
+
     }
 
 }

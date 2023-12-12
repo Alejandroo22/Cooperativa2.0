@@ -228,6 +228,7 @@ namespace sistema_modular_cafe_majada.views
                 TrillaSeleccionado.ITrilla = sub.IdTrilla_cafe;
             }
 
+            CbxSubProducto();
             AlmacenController almCtrl = new AlmacenController();
             var calidad = almCtrl.ObtenerAlmacenNombreCalidad(sub.IdCalidadCafe);
             CalidadSeleccionada.ICalidadSeleccionada = (int)calidad.IdCalidadCafe;
@@ -237,13 +238,14 @@ namespace sistema_modular_cafe_majada.views
             isubProducto = name.IdSubProducto;
 
             //cbx
-            cbx_subProducto.Items.Clear();
-            CbxSubProducto();
             int isP = name.IdSubProducto - 1;
+            Console.WriteLine("Depuracion - idCalidad " + CalidadSeleccionada.ICalidadSeleccionada);
 
             // Obtener la fecha y la hora por separado
             DateTime fechaTrilla = sub.FechaTrillaCafe.Date;
 
+            txb_codCalidad.Text = Convert.ToString(CalidadSeleccionada.ICalidadSeleccionada);
+            txb_codPesador.Text = Convert.ToString(sub.IdPersonal);
             dtp_fechaTrilla.Value = fechaTrilla;
             txb_calidadCafe.Text = sub.NombreCalidadCafe;
             iCalidad = sub.IdCalidadCafe;
@@ -380,7 +382,6 @@ namespace sistema_modular_cafe_majada.views
             {
                 datoSubPro = subPro.ObtenerSubProductos();
             }
-            cbx_subProducto.Items.Clear();
 
             // Asignar los valores numéricos a los elementos del ComboBox
             foreach (SubProducto subP in datoSubPro)
@@ -462,7 +463,7 @@ namespace sistema_modular_cafe_majada.views
             }
             else
             {
-                MessageBox.Show("Ninguna Tipo de Movimiento en Trilla a sido seleccionado. Por favor seleccionar uno.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ningun Tipo de Movimiento en Trilla a sido seleccionado. Por favor seleccionar uno.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -527,10 +528,16 @@ namespace sistema_modular_cafe_majada.views
             var usuario = userControl.ObtenerUsuario(UsuarioActual.NombreUsuario); // Asignar el resultado de ObtenerUsuario
 
             var trillaController = new TrillaController();
+            var historialSubProduc = new CantidadSiloPiña();
 
             //
             var almCM = almacenC.ObtenerCantidadCafeAlmacen(iAlmacen);
             var almNCM = almacenC.ObtenerAlmacenNombreCalidad(iAlmacen);
+            var histoialCantidad = new CantidadSiloPiñaController();
+            historialSubProduc = histoialCantidad.ObtenerCantidadSubProductoSiloPiña(CosechaActual.ICosechaActual, iAlmacen, selectedValue);
+
+            List<CantidadSiloPiña> listaSubproductos = histoialCantidad.ObtenerSubProductoSiloPiña(iAlmacen); 
+
             double actcantidad = almCM.CantidadActualAlmacen;
             double actcantidadSaco = almCM.CantidadActualSacoAlmacen;
 
@@ -540,17 +547,8 @@ namespace sistema_modular_cafe_majada.views
 
                 if (!verificexisten)
                 {
-                    if (cantAct < pesoQQs || cantAct == 0)
-                    {
-                        MessageBox.Show("Error, la cantidad QQs de cafe que desea Sacar del almacen excede sus limite. Desea Sacar la cantidad de " + pesoQQs + " en el contenido disponible " + cantAct, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (cantActSaco < pesoSaco || cantActSaco == 0)
-                    {
-                        MessageBox.Show("Error, la cantidad en Saco de cafe que desea Sacar del almacen excede sus limite. Desea Sacar la cantidad de " + pesoSaco + " en el contenido disponible " + cantActSaco, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    //Condicion para sacar el cafe segun la calidad y su subproducto
+                    //
 
                     if (almNCM.IdCalidadCafe != CalidadSeleccionada.ICalidadSeleccionada)
                     {
@@ -562,10 +560,22 @@ namespace sistema_modular_cafe_majada.views
                         return;
                     }
 
-                    if (almNCM.IdSubProducto != selectedValue)
+                    // Verificar si el selectedValue coincide con algún id de subproducto en la lista
+                    if (!listaSubproductos.Any(subproducto => subproducto.IdSubProducto == selectedValue))
                     {
-                        MessageBox.Show("El SubProducto Cafe que se a seleccionado en el formulario no es compatible, El SubProducto a dar Salida es " + almNCM.NombreSubProducto + " y a seleccionado el SubProducto "
-                            + selectedValueName + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El SubProducto Cafe que se ha seleccionado en el formulario no es el mismo que contiene el almacen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (historialSubProduc.CantidadCafe < pesoQQs || historialSubProduc.CantidadCafe == 0)
+                    {
+                        MessageBox.Show("Error, la cantidad QQs de cafe que desea Sacar del almacen excede sus limite. Desea Sacar la cantidad de " + pesoQQs + " en el contenido disponible " + historialSubProduc.CantidadCafe, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (historialSubProduc.CantidadCafeSaco < pesoSaco || historialSubProduc.CantidadCafeSaco == 0)
+                    {
+                        MessageBox.Show("Error, la cantidad en Saco de cafe que desea Sacar del almacen excede sus limite. Desea Sacar la cantidad de " + pesoSaco + " en el contenido disponible " + historialSubProduc.CantidadCafeSaco, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -578,6 +588,7 @@ namespace sistema_modular_cafe_majada.views
                         CantidadCafe = pesoQQs,
                         CantidadCafeSaco = pesoSaco,
                         TipoMovimiento = "Salida Cafe No.Trilla " + numTrilla,
+                        IdSubProducto = selectedValue,
                         IdAlmacenSiloPiña = iAlmacen
                     };
 
@@ -655,15 +666,15 @@ namespace sistema_modular_cafe_majada.views
                 Console.WriteLine("Depuracion - buscador   " + search);
                 var cantUpd = cantidadCafeC.BuscarCantidadSiloPiñaSub(search);
                 
-                if (cantAct < pesoQQs || cantAct == 0)
+                if (historialSubProduc.CantidadCafe < pesoQQs || historialSubProduc.CantidadCafe == 0)
                 {
-                    MessageBox.Show("Error, la cantidad QQs de cafe que desea Sacar del almacen excede sus limite. Desea Sacar la cantidad de " + pesoQQs + " en el contenido disponible " + cantAct, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error, la cantidad QQs de cafe que desea Sacar del almacen excede sus limite. Desea Sacar la cantidad de " + pesoQQs + " en el contenido disponible " + historialSubProduc.CantidadCafe, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (cantActSaco < pesoSaco || cantActSaco == 0)
+                if (historialSubProduc.CantidadCafeSaco < pesoSaco || historialSubProduc.CantidadCafeSaco == 0)
                 {
-                    MessageBox.Show("Error, la cantidad en Saco de cafe que desea Sacar del almacen excede sus limite. Desea Sacar la cantidad de " + pesoSaco + " en el contenido disponible " + cantActSaco, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error, la cantidad en Saco de cafe que desea Sacar del almacen excede sus limite. Desea Sacar la cantidad de " + pesoSaco + " en el contenido disponible " + historialSubProduc.CantidadCafeSaco, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -677,10 +688,10 @@ namespace sistema_modular_cafe_majada.views
                     return;
                 }
 
-                if (almNCM.IdSubProducto != selectedValue)
+                // Verificar si el selectedValue coincide con algún id de subproducto en la lista
+                if (!listaSubproductos.Any(subproducto => subproducto.IdSubProducto == selectedValue))
                 {
-                    MessageBox.Show("El SubProducto Cafe que se a seleccionado en el formulario no es compatible, El SubProducto a dar Salida es " + almNCM.NombreSubProducto + " y a seleccionado el SubProducto "
-                        + selectedValueName + ".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El SubProducto Cafe que se ha seleccionado en el formulario no es el mismo que contiene el almacen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -727,6 +738,7 @@ namespace sistema_modular_cafe_majada.views
                         CantidadCafe = cantidaQQsActUpdate,
                         CantidadCafeSaco = cantidaSacoActUpdate,
                         IdAlmacenSiloPiña = iAlmacen,
+                        IdSubProducto = selectedValue,
                         TipoMovimiento = "Salida Cafe No.Trilla " + numTrilla
                     };
 
@@ -752,6 +764,7 @@ namespace sistema_modular_cafe_majada.views
                         CantidadCafe = cantidaQQsActUpdate,
                         CantidadCafeSaco = cantidaSacoActUpdate,
                         IdAlmacenSiloPiña = cantUpd.IdAlmacenSiloPiña,
+                        IdSubProducto = selectedValue,
                         TipoMovimiento = "Salida Cafe No.Trilla " + numTrilla
                     };
 
@@ -1087,6 +1100,7 @@ namespace sistema_modular_cafe_majada.views
                             // Asignar el nombre al TextBox para mostrar el nombre
                             txb_calidadCafe.Text = calidad.NombreCalidad;
                             CalidadSeleccionada.ICalidadSeleccionada = calidad.IdCalidad;
+                            iCalidad = CalidadSeleccionada.ICalidadSeleccionada;
                             CalidadSeleccionada.NombreCalidadSeleccionada = calidad.NombreCalidad;
                             imgClickCalidad = true;
                             CbxSubProducto();
@@ -1127,8 +1141,12 @@ namespace sistema_modular_cafe_majada.views
 
                         if (personal != null)
                         {
+                            PersonalSeleccionado.TipoPersonal = "esa";
                             // Asignar el nombre al TextBox para mostrar el nombre
                             txb_personal.Text = personal.NombrePersona;
+                            PersonalSeleccionado.IPersonalPesador = personal.IdPersonal;
+                            iPesador = PersonalSeleccionado.IPersonalPesador;
+                            PersonalSeleccionado.NombrePersonalPesador = personal.NombrePersonal;
                             imgClickCalidad = true;
                         }
                         else

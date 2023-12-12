@@ -329,7 +329,7 @@ namespace sistema_modular_cafe_majada.model.DAO
                 conexion.Conectar();
 
                 // Crear la consulta SQL para obtener los registros
-                string consulta = @"SELECT c.*, c.id_subproducto_cafe, sp.nombre_subproducto
+                string consulta = @"SELECT c.*, sp.nombre_subproducto
                                     FROM CantidadCafe_Silo_Piña c
                                     INNER JOIN SubProducto sp ON c.id_subproducto_cafe = sp.id_subproducto
                                     WHERE tipo_movimiento_cantidad_cafe LIKE CONCAT('%', @search)";
@@ -368,6 +368,96 @@ namespace sistema_modular_cafe_majada.model.DAO
             return cantidads;
         }
 
+        //
+        //obtener la Cantidad de subproducto en especifico mediante el id del silo/Piña en la BD
+        public CantidadSiloPiña ObtenerCantidadSubProductoSiloPiña(int iCosecha, int iAlmacen, int iSubProducto)
+        {
+            CantidadSiloPiña cantidad = null;
+
+            try
+            {
+                // Conectar a la base de datos
+                conexion.Conectar();
+
+                // Crear la consulta SQL para obtener los registros 
+                string consulta = @"SELECT a.id_calidad_cafe, sp.nombre_subproducto, a.nombre_almacen, ccsp.id_subproducto_cafe,
+                                        (
+                                            COALESCE(SUM(CASE WHEN ccsp.tipo_movimiento_cantidad_cafe LIKE '%Entrada%' THEN ccsp.cantidad_saco_cafe ELSE 0 END), 0) 
+                                            + COALESCE((SELECT SUM(ccsp2.cantidad_saco_cafe)
+                                                        FROM CantidadCafe_Silo_Piña ccsp2
+                                                        WHERE ccsp2.id_almacen_silo_piña = @iAlmacen
+                                                        AND ccsp2.tipo_movimiento_cantidad_cafe LIKE '%Traslado Cafe - Destino%'), 0)
+                                        )
+                                        - COALESCE(SUM(CASE WHEN ccsp.tipo_movimiento_cantidad_cafe LIKE '%Salida%' THEN ccsp.cantidad_saco_cafe ELSE 0 END), 0)
+                                        - COALESCE(SUM(CASE WHEN ccsp.tipo_movimiento_cantidad_cafe LIKE '%Traslado Cafe - Procedencia%' THEN ccsp.cantidad_saco_cafe ELSE 0 END), 0) 
+                                        AS existencias_cantidad_sacos,
+                                        (
+                                            COALESCE(SUM(CASE WHEN ccsp.tipo_movimiento_cantidad_cafe LIKE '%Entrada%' THEN ccsp.cantidad_qqs_cafe ELSE 0 END), 0) 
+                                            + COALESCE((SELECT SUM(ccsp2.cantidad_qqs_cafe)
+                                                        FROM CantidadCafe_Silo_Piña ccsp2
+                                                        WHERE ccsp2.id_almacen_silo_piña = @iAlmacen
+                                                        AND ccsp2.tipo_movimiento_cantidad_cafe LIKE '%Traslado Cafe - Destino%'), 0)
+                                        )
+                                        - COALESCE(SUM(CASE WHEN ccsp.tipo_movimiento_cantidad_cafe LIKE '%Salida%' THEN ccsp.cantidad_qqs_cafe ELSE 0 END), 0)
+                                        - COALESCE(SUM(CASE WHEN ccsp.tipo_movimiento_cantidad_cafe LIKE '%Traslado Cafe - Procedencia%' THEN ccsp.cantidad_qqs_cafe ELSE 0 END) , 0) 
+                                        AS existencias_cantidad_qqs
+                                    FROM
+                                        Almacen a
+                                    JOIN
+                                        Calidad_Cafe c ON a.id_calidad_cafe = c.id_calidad
+                                    JOIN
+                                        Bodega_Cafe b ON a.id_bodega_ubicacion_almacen = b.id_bodega
+                                    LEFT JOIN
+                                        CantidadCafe_Silo_Piña ccsp ON ccsp.id_almacen_silo_piña = a.id_almacen
+                                    JOIN
+                                        SubProducto sp ON ccsp.id_subproducto_cafe = sp.id_subproducto
+                                    WHERE
+                                        ccsp.id_cosecha_cantidad = @iCosecha and ccsp.id_subproducto_cafe =  @iSubProd
+                                    GROUP BY
+                                        a.id_calidad_cafe,
+                                        sp.nombre_subproducto,
+                                        a.nombre_almacen,
+                                        a.id_almacen
+                                    ORDER BY
+                                        a.id_calidad_cafe,
+                                        sp.id_subproducto,
+                                        a.nombre_almacen";
+
+                conexion.CrearComando(consulta);
+                conexion.AgregarParametro("@iCosecha", iCosecha);
+                conexion.AgregarParametro("@iAlmacen", iAlmacen);
+                conexion.AgregarParametro("@iSubProd", iSubProducto);
+
+                // Ejecutar la consulta y leer el resultado
+                using (MySqlDataReader reader = conexion.EjecutarConsultaReader(consulta))
+                {
+                    if (reader.HasRows && reader.Read())
+                    {
+                        cantidad = new CantidadSiloPiña()
+                        {
+                            CantidadCafe = Convert.ToDouble(reader["existencias_cantidad_qqs"]),
+                            CantidadCafeSaco = Convert.ToDouble(reader["existencias_cantidad_sacos"]),
+                            IdSubProducto = Convert.ToInt32(reader["id_subproducto_cafe"]),
+                            NombreSubProducto = Convert.ToString(reader["nombre_subproducto"])
+                        };
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener la cantidad el silo/piña: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión a la base de datos
+                conexion.Desconectar();
+            }
+
+            return cantidad;
+        }
+
+        //Funcion para actualizar los datos del historial 
         public bool ActualizarCantidadCafeSiloPiña(CantidadSiloPiña cantidad)
         {
             bool exito = false;
@@ -453,6 +543,121 @@ namespace sistema_modular_cafe_majada.model.DAO
             finally
             {
                 //se cierra la conexion con la base de datos
+                conexion.Desconectar();
+            }
+        }
+
+        //obtener la Cantidad en especifico mediante el id del silo/Piña en la BD
+        public List<CantidadSiloPiña> ObtenerListaSubProductosSiloPiña(int idAlmacen)
+        {
+            List<CantidadSiloPiña> resultados = new List<CantidadSiloPiña>();
+
+            try
+            {
+                // Conectar a la base de datos
+                conexion.Conectar();
+
+                // Crear la consulta SQL para obtener los resultados
+                string consulta = @"SELECT id_subproducto_cafe, MAX(nombre_subproducto) as nombre_subproducto
+                                FROM CantidadCafe_Silo_Piña ccp
+                                JOIN SubProducto sp ON ccp.id_subproducto_cafe = sp.id_subproducto
+                                WHERE ccp.id_almacen_silo_piña = @idAlmacen
+                                GROUP BY id_subproducto_cafe";
+
+                conexion.CrearComando(consulta);
+                conexion.AgregarParametro("@idAlmacen", idAlmacen);
+
+                // Ejecutar la consulta y leer el resultado
+                using (MySqlDataReader reader = conexion.EjecutarConsultaReader(consulta))
+                {
+                    while (reader != null && reader.Read())
+                    {
+                        CantidadSiloPiña resultado = new CantidadSiloPiña()
+                        {
+                            IdSubProducto = reader["id_subproducto_cafe"] is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
+                            NombreSubProducto = reader["nombre_subproducto"] is DBNull ? string.Empty : Convert.ToString(reader["nombre_subproducto"])
+                        };
+
+                        resultados.Add(resultado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener la lista de subproductos en el silo/piña: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión a la base de datos
+                conexion.Desconectar();
+            }
+
+            return resultados;
+        }
+
+        public bool VerificarRegistroExistente(int idAlmacen, int selectedSubproducto)
+        {
+            try
+            {
+                // Conectar a la base de datos
+                conexion.Conectar();
+
+                // Crear la consulta SQL para verificar registros existentes
+                string consulta = "SELECT COUNT(*) FROM CantidadCafe_Silo_Piña WHERE id_almacen_silo_piña = @idAlmacen";
+                conexion.CrearComando(consulta);
+                conexion.AgregarParametro("@idAlmacen", idAlmacen);
+
+                // Ejecutar la consulta y obtener el resultado
+                int cantidadRegistros = Convert.ToInt32(conexion.EjecutarConsultaEscalar());
+
+                // Verificar las condiciones
+                if (cantidadRegistros == 0)
+                {
+                    // No hay registros, puedes registrar uno nuevo
+                    return true;
+                }
+                else
+                {
+                    // Hay registros, puedes verificar si cumplen con las condiciones
+                    // Por ejemplo, verificar si el subproducto es el mismo
+                    string consultaSubproducto = "SELECT DISTINCT id_subproducto_cafe FROM CantidadCafe_Silo_Piña WHERE id_almacen_silo_piña = @idAlmacen";
+                    conexion.CrearComando(consultaSubproducto);
+                    conexion.AgregarParametro("@idAlmacen", idAlmacen);
+
+                    object subproductoExistente = conexion.EjecutarConsultaEscalar();
+
+                    if (subproductoExistente != null && subproductoExistente != DBNull.Value)
+                    {
+                        int subproductoExistenteId = Convert.ToInt32(subproductoExistente);
+
+                        if (subproductoExistenteId == selectedSubproducto)
+                        {
+                            // El subproducto es el mismo, puedes seguir
+                            return true;
+                        }
+                        else
+                        {
+                            // El subproducto es diferente, muestra un mensaje de error
+                            Console.WriteLine("El subproducto del almacen ya contiene registros y es diferente al seleccionado. Error");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        // No hay registros de subproducto, puedes manejar esto según tus necesidades
+                        Console.WriteLine("No hay registros de subproducto en el almacen. Información");
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al verificar registros existentes: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                // Cerrar la conexión a la base de datos
                 conexion.Desconectar();
             }
         }

@@ -253,7 +253,6 @@ namespace sistema_modular_cafe_majada.views
                 CantidadSaco = string.IsNullOrWhiteSpace(almacen.CantidadActualSacoAlmacen.ToString()) ? 0.0 : almacen.CantidadActualSacoAlmacen,
                 Ubicacion = almacen.UbicacionAlmacen,
                 Calidad = almacen.NombreCalidadCafe ?? "",
-                //SubProducto = almacen.NombreSubProducto ?? "",
                 Bodega = almacen.NombreBodegaUbicacion
             }).ToList();
 

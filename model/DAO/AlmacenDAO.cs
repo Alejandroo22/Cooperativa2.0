@@ -117,7 +117,10 @@ namespace sistema_modular_cafe_majada.model.DAO
                 conexion.Conectar();
 
                 // Crear la consulta SQL para obtener el rol
-                string consulta = "SELECT * FROM Almacen WHERE id_almacen = @Id";
+                string consulta = @"SELECT a.*, ccp.id_subproducto_cafe 
+                                    FROM Almacen a 
+                                    LEFT JOIN CantidadCafe_Silo_Piña ccp ON a.id_almacen = ccp.id_almacen_silo_piña 
+                                    WHERE id_almacen = @Id";
 
                 conexion.CrearComando(consulta);
                 conexion.AgregarParametro("@Id", idAlmacen);
@@ -137,7 +140,7 @@ namespace sistema_modular_cafe_majada.model.DAO
                             CantidadActualSacoAlmacen = (reader["cantidad_actual_saco_almacen"] is DBNull ? 0.0 : Convert.ToDouble(reader["cantidad_actual_saco_almacen"])),
                             UbicacionAlmacen = Convert.ToString(reader["ubicacion_almacen"]),
                             IdBodegaUbicacion = Convert.ToInt32(reader["id_bodega_ubicacion_almacen"]),
-                            //IdSubProducto = (reader["id_subproducto_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
+                            IdSubProducto = (reader["id_subproducto_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_subproducto_cafe"]),
                             IdCalidadCafe = (reader["id_calidad_cafe"]) is DBNull ? 0 : Convert.ToInt32(reader["id_calidad_cafe"])
                         };
                     }
@@ -761,8 +764,8 @@ namespace sistema_modular_cafe_majada.model.DAO
 
                 // Crear la consulta SQL para obtener el rol
                 string consulta = @"SELECT a.*, b.nombre_bodega, c.nombre_calidad "
-                                    + @"FROM Almacen a
-                                        LEFT JOIN Bodega_Cafe b ON a.id_bodega_ubicacion_almacen = b.id_bodega
+                                    + @"FROM Almacen a 
+                                        LEFT JOIN Bodega_Cafe b ON a.id_bodega_ubicacion_almacen = b.id_bodega 
                                         LEFT JOIN Calidad_Cafe c ON a.id_calidad_cafe = c.id_calidad "
                                     + @"WHERE ((id_calidad_cafe = @id or id_calidad_cafe IS NULL) AND 
                                         (cantidad_actual_almacen IS NULL OR cantidad_actual_almacen < capacidad_almacen or 0.0))
@@ -821,8 +824,8 @@ namespace sistema_modular_cafe_majada.model.DAO
 
                 // Crear la consulta SQL para obtener el rol
                 string consulta = @"SELECT a.*, b.nombre_bodega, c.nombre_calidad " // , sp.nombre_subproducto
-                                        +@"FROM Almacen a
-                                        LEFT JOIN Bodega_Cafe b ON a.id_bodega_ubicacion_almacen = b.id_bodega
+                                        +@" FROM Almacen a 
+                                        LEFT JOIN Bodega_Cafe b ON a.id_bodega_ubicacion_almacen = b.id_bodega 
                                         LEFT JOIN Calidad_Cafe c ON a.id_calidad_cafe = c.id_calidad "
                                         //LEFT JOIN SubProducto sp ON a.id_subproducto_cafe = sp.id_subproducto
                                         +@"WHERE a.id_bodega_ubicacion_almacen LIKE CONCAT('%', @search, '%')";

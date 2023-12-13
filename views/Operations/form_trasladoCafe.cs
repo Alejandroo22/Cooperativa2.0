@@ -255,8 +255,10 @@ namespace sistema_modular_cafe_majada.views
             txb_almacenPr.Text = sub.NombreAlmacenProcedencia;
             iAlmacenProce = sub.IdAlmacenProcedencia;
             iAlmacenProceUpd = sub.IdAlmacenProcedencia;
+            AlmacenSeleccionado.IAlmacen = iAlmacenProce;
             txb_almacenDes.Text = sub.NombreAlmacenDestino;
             iAlmacenDest = sub.IdAlmacenDestino;
+            AlmacenSeleccionado.IAlmacenDestino = iAlmacenDest;
             txb_personal.Text = sub.NombrePersonal;
             iPesador = sub.IdPersonal;
             txb_fincaPr.Text = sub.NombreProcedencia;
@@ -1203,8 +1205,8 @@ namespace sistema_modular_cafe_majada.views
                         double actcantidadPr = almCMP.CantidadActualAlmacen;
                         double actcantidadSacoPr = almCMP.CantidadActualSacoAlmacen;
 
-                        double resultCaUpdPr = actcantidadPr + cantidaQQsActUpdate;
-                        double resultCaUpdSacoPr = actcantidadSacoPr + cantidaSacoActUpdate;
+                        double resultCaUpdPr = actcantidadPr + Convert.ToDouble(txb_pesoQQs.Text);
+                        double resultCaUpdSacoPr = actcantidadSacoPr + Convert.ToDouble(txb_pesoSaco.Text);
                         almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(iAlmacenProce, resultCaUpdPr, resultCaUpdSacoPr, CalidadSeleccionada.ICalidadSeleccionada);
 
                         //Almacen Destino
@@ -1212,8 +1214,8 @@ namespace sistema_modular_cafe_majada.views
                         double actcantidadDes = almCMD.CantidadActualAlmacen;
                         double actcantidadSacoDes = almCMD.CantidadActualSacoAlmacen;
 
-                        double resultCaUpdDes = actcantidadDes - cantidaQQsActUpdate;
-                        double resultCaUpdSacoDes = actcantidadSacoDes - cantidaSacoActUpdate;
+                        double resultCaUpdDes = actcantidadDes - Convert.ToDouble(txb_pesoQQs.Text);
+                        double resultCaUpdSacoDes = actcantidadSacoDes - Convert.ToDouble(txb_pesoSaco.Text);
                         almacenC.ActualizarCantidadEntradaCafeUpdateSubPartidaAlmacen(iAlmacenDest, resultCaUpdDes, resultCaUpdSacoDes, CalidadSeleccionada.ICalidadSeleccionada);
 
                         cantidadCafeC.EliminarCantidadSiloPiña(cantUpdPr.IdCantidadCafe);

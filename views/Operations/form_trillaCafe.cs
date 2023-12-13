@@ -231,8 +231,8 @@ namespace sistema_modular_cafe_majada.views
             CbxSubProducto();
             AlmacenController almCtrl = new AlmacenController();
             var calidad = almCtrl.ObtenerAlmacenNombreCalidad(sub.IdCalidadCafe);
-            CalidadSeleccionada.ICalidadSeleccionada = (int)calidad.IdCalidadCafe;
-            CalidadSeleccionada.NombreCalidadSeleccionada = calidad.NombreCalidadCafe;
+            CalidadSeleccionada.ICalidadSeleccionada = Convert.ToInt32(sub.IdCalidadCafe);
+            CalidadSeleccionada.NombreCalidadSeleccionada = sub.NombreCalidadCafe;
 
             var name = subPro.ObtenerSubProductoPorNombre(sub.NombreSubProducto);
             isubProducto = name.IdSubProducto;

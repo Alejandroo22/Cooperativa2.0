@@ -211,8 +211,8 @@ namespace sistema_modular_cafe_majada.views
             CbxSubProducto();
             AlmacenController almCtrl = new AlmacenController();
             var calidad = almCtrl.ObtenerAlmacenNombreCalidad(sub.IdCalidadCafe);
-            CalidadSeleccionada.ICalidadSeleccionada = (int)calidad.IdCalidadCafe;
-            CalidadSeleccionada.NombreCalidadSeleccionada = calidad.NombreCalidadCafe;
+            CalidadSeleccionada.ICalidadSeleccionada = sub.IdCalidadCafe;
+            CalidadSeleccionada.NombreCalidadSeleccionada = sub.NombreCalidadCafe;
 
             var name = subPro.ObtenerSubProductoPorNombre(sub.NombreSubProducto);
             isubProducto = name.IdSubProducto;
@@ -448,16 +448,18 @@ namespace sistema_modular_cafe_majada.views
                     //datos para subproducto
                     //isubProducto = (int)datoA.IdSubProducto;
 
-                    //cbx
-                    cbx_subProducto.Items.Clear();
-                    CbxSubProducto();
-                    int isP = isubProducto - 1;
-                    Console.WriteLine("Depurar - idSubpro: " + isP);
                 
-                    cbx_subProducto.SelectedIndex = isP;
                     txb_calidadCafe.Text = ccafe.NombreCalidad;
                     CalidadSeleccionada.ICalidadSeleccionada = ccafe.IdCalidad;
                     CalidadSeleccionada.NombreCalidadSeleccionada = ccafe.NombreCalidad;
+
+                    //cbx
+                    CbxSubProducto();
+                    int isP = isubProducto - 1;
+                    Console.WriteLine("Depurar - idSubpro: " + isP);
+
+                    cbx_subProducto.SelectedIndex = isP;
+                    txb_codCalidad.Text = Convert.ToString(CalidadSeleccionada.ICalidadSeleccionada);
                     txb_bodega.Text = datoB.NombreBodega;
                     iBodega = datoB.IdBodega;
                     BodegaSeleccionada.IdBodega = iBodega;
@@ -705,7 +707,7 @@ namespace sistema_modular_cafe_majada.views
                         double resultCa = actcantidad - pesoQQs;
                         double resultCaSaco = actcantidadSaco - pesoSaco;
 
-                        almacenC.ActualizarCantidadEntradaCafeAlmacen(iAlmacen, resultCa, resultCaSaco, iCalidad);
+                        almacenC.ActualizarCantidadEntradaCafeAlmacen(iAlmacen, resultCa, resultCaSaco, CalidadSeleccionada.ICalidadSeleccionada);
 
                         try
                         {
@@ -1169,8 +1171,12 @@ namespace sistema_modular_cafe_majada.views
 
                         if (personal != null)
                         {
+                            PersonalSeleccionado.TipoPersonal = "esa";
                             // Asignar el nombre al TextBox para mostrar el nombre
                             txb_personal.Text = personal.NombrePersona;
+                            PersonalSeleccionado.IPersonalPesador = personal.IdPersonal;
+                            iPesador = PersonalSeleccionado.IPersonalPesador;
+                            PersonalSeleccionado.NombrePersonalPesador = personal.NombrePersonal;
                             imgClickCalidad = true;
                         }
                         else

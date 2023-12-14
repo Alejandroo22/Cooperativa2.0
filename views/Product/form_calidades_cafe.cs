@@ -190,7 +190,8 @@ namespace sistema_modular_cafe_majada.views
 
                 imagenClickeada = false;
             }
-
+            txb_id.Enabled = false;
+            txb_id.ReadOnly = true;
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -216,6 +217,8 @@ namespace sistema_modular_cafe_majada.views
                     txb_id.Text = Convert.ToString(calidadSeleccionada.IdCalidad);
                     txb_nameCalidad.Text = calidadSeleccionada.NombreCalidad;
                     txb_desCalidad.Text = calidadSeleccionada.DescripcionCalidad;
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
                 }
             }
             else

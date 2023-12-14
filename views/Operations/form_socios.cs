@@ -244,6 +244,8 @@ namespace sistema_modular_cafe_majada.views
                     txb_nombrePersona.Text = socioSeleccionado.NombrePersonaResp;
                     txb_nombreFinca.Text = socioSeleccionado.NombreFinca;
                     Console.WriteLine("id finca " + FincaSeleccionada.IFincaSeleccionada);
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
                 }
                 else
                 {
@@ -526,6 +528,8 @@ namespace sistema_modular_cafe_majada.views
                     socioSeleccionado = null;
 
                 }
+                txb_id.Enabled = false;
+                txb_id.ReadOnly = true;
             }
             catch (Exception ex)
             {

@@ -181,7 +181,8 @@ namespace sistema_modular_cafe_majada.views
                     // Asignar los valores a los cuadros de texto solo si no se ha hecho clic en la imagen
                     txb_id.Text = Convert.ToString(cosechaSeleccionado.IdCosecha);
                     txb_nombre.Text = cosechaSeleccionado.NombreCosecha;
-
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
                 }
                 else
                 {
@@ -339,6 +340,9 @@ namespace sistema_modular_cafe_majada.views
                     ShowCosechaGrid();
                     ClearDataTxb();
                 }
+
+                txb_id.Enabled = false;
+                txb_id.ReadOnly = true;
             }
             catch (Exception ex)
             {

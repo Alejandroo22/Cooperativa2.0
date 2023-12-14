@@ -252,6 +252,8 @@ namespace sistema_modular_cafe_majada.views
                     MessageBox.Show("Error al actualizar la finca, Verifique los datos ingresados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
+                txb_id.Enabled = false;
+                txb_id.ReadOnly = true;
                 imagenClickeada = false;
             }
         }
@@ -319,6 +321,8 @@ namespace sistema_modular_cafe_majada.views
                     txb_id.Text = Convert.ToString(cargoSeleccionada.IdCargo);
                     txb_cargo.Text = cargoSeleccionada.NombreCargo;
                     txb_descripCargo.Text = cargoSeleccionada.DescripcionCargo;
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
                 }
             }
             else

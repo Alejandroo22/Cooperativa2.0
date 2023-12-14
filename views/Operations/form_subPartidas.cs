@@ -449,6 +449,12 @@ namespace sistema_modular_cafe_majada.views
             DateTime fechaSalida = sub.SalidaSecado.Date;
             TimeSpan horaSalida = sub.SalidaSecado.TimeOfDay;
 
+            txb_codCalidad.Text = Convert.ToString(CalidadSeleccionada.ICalidadSeleccionada);
+            txb_codPesador.Text = Convert.ToString(sub.IdPesador);
+            txb_codCatador.Text = Convert.ToString(sub.IdCatador);
+            txb_codProcedencia.Text = Convert.ToString(sub.IdProcedencia);
+            txb_codPuntero.Text = Convert.ToString(sub.IdPunteroSecador);
+
             txb_procedencia.Text = sub.NombreProcedencia;
             iProcedencia = sub.IdProcedencia;
             txb_calidad.Text = sub.NombreCalidadCafe;
@@ -517,6 +523,7 @@ namespace sistema_modular_cafe_majada.views
             {
                 iProcedencia = ProcedenciaSeleccionada.IProcedencia;
                 txb_procedencia.Text = ProcedenciaSeleccionada.NombreProcedencia;
+                txb_codProcedencia.Text = ProcedenciaSeleccionada.IProcedencia.ToString();
             }
         }
 
@@ -530,6 +537,7 @@ namespace sistema_modular_cafe_majada.views
             {
                 iCalidad = CalidadSeleccionada.ICalidadSeleccionada;
                 txb_calidad.Text = CalidadSeleccionada.NombreCalidadSeleccionada;
+                txb_codCalidad.Text = CalidadSeleccionada.ICalidadSeleccionada.ToString();
                 imgClickCalidad = true;
                 CbxSubProducto();
             }
@@ -545,6 +553,7 @@ namespace sistema_modular_cafe_majada.views
             {
                 iSecador = PersonalSeleccionado.IPersonalPuntero;
                 txb_nombrePuntero.Text = PersonalSeleccionado.NombrePersonalPuntero;
+                txb_codPuntero.Text = PersonalSeleccionado.IPersonalPuntero.ToString();
             }
         }
 
@@ -558,6 +567,7 @@ namespace sistema_modular_cafe_majada.views
             {
                 iCatador = PersonalSeleccionado.IPersonalCatador;
                 txb_nombreCatador.Text = PersonalSeleccionado.NombrePersonalCatador;
+                txb_codCatador.Text = PersonalSeleccionado.IPersonalCatador.ToString();
             }
         }
 
@@ -623,6 +633,7 @@ namespace sistema_modular_cafe_majada.views
             {
                 iPesador = PersonalSeleccionado.IPersonalPesador;
                 txb_nombrePesador.Text = PersonalSeleccionado.NombrePersonalPesador;
+                txb_codPesador.Text = PersonalSeleccionado.IPersonalPesador.ToString();
             }
         }
 
@@ -2088,13 +2099,14 @@ namespace sistema_modular_cafe_majada.views
             }
         }
 
-
         private void txb_codCalidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 if (e.KeyChar == (char)Keys.Enter)
                 {
+                    e.Handled = true;
+
                     string codigo = txb_codCalidad.Text.Trim();
                     int codigoInt;
 
@@ -2142,6 +2154,8 @@ namespace sistema_modular_cafe_majada.views
                     string codigo = txb_codPuntero.Text.Trim();
                     int codigoInt;
 
+                    e.Handled = true;
+
                     if (int.TryParse(codigo, out codigoInt))
                     {
                         // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
@@ -2186,6 +2200,8 @@ namespace sistema_modular_cafe_majada.views
                     string codigo = txb_codCatador.Text.Trim();
                     int codigoInt;
 
+                    e.Handled = true;
+
                     if (int.TryParse(codigo, out codigoInt))
                     {
                         // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
@@ -2229,7 +2245,9 @@ namespace sistema_modular_cafe_majada.views
                 {
                     string codigo = txb_codPesador.Text.Trim();
                     int codigoInt;
-
+                    
+                    e.Handled = true;
+                    
                     if (int.TryParse(codigo, out codigoInt))
                     {
                         // Asegurarte de manejar el caso en el que ObtenerNombrePorCodigo devuelve null
@@ -2273,6 +2291,8 @@ namespace sistema_modular_cafe_majada.views
                 {
                     string codigo = txb_codProcedencia.Text.Trim();
                     int codigoInt;
+
+                    e.Handled = true;
 
                     if (int.TryParse(codigo, out codigoInt))
                     {

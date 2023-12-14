@@ -480,6 +480,7 @@ namespace sistema_modular_cafe_majada.views
                     txb_calidadCafe.Text = ccafe.NombreCalidad;
                     CalidadSeleccionada.ICalidadSeleccionada = ccafe.IdCalidad;
                     CalidadSeleccionada.NombreCalidadSeleccionada = ccafe.NombreCalidad;
+                    txb_codCalidad.Text = CalidadSeleccionada.ICalidadSeleccionada.ToString();
                     txb_bodegaPr.Text = datoB.NombreBodega;
                     iBodegaProce = datoB.IdBodega;
                     BodegaSeleccionada.IdBodega = iBodegaProce;
@@ -531,6 +532,7 @@ namespace sistema_modular_cafe_majada.views
             {
                 iCalidad = CalidadSeleccionada.ICalidadSeleccionada;
                 txb_calidadCafe.Text = CalidadSeleccionada.NombreCalidadSeleccionada;
+                txb_codCalidad.Text = CalidadSeleccionada.ICalidadSeleccionada.ToString();
                 imgClickCalidad = true;
                 CbxSubProducto();
             }
@@ -604,6 +606,7 @@ namespace sistema_modular_cafe_majada.views
             {
                 iPesador = PersonalSeleccionado.IPersonalPesador;
                 txb_personal.Text = PersonalSeleccionado.NombrePersonalPesador;
+                txb_codPesador.Text = PersonalSeleccionado.IPersonalPesador.ToString();
             }
         }
 
@@ -1378,6 +1381,8 @@ namespace sistema_modular_cafe_majada.views
             {
                 if (e.KeyChar == (char)Keys.Enter)
                 {
+                    e.Handled = true;
+
                     string codigo = txb_codCalidad.Text.Trim();
                     int codigoInt;
 
@@ -1422,6 +1427,8 @@ namespace sistema_modular_cafe_majada.views
             {
                 if (e.KeyChar == (char)Keys.Enter)
                 {
+                    e.Handled = true;
+
                     string codigo = txb_codPesador.Text.Trim();
                     int codigoInt;
 

@@ -204,6 +204,8 @@ namespace sistema_modular_cafe_majada.views
                     txb_id.Text = Convert.ToString(tipoCafeSeleccionado.IdTipoCafe);
                     txb_claseUva.Text = tipoCafeSeleccionado.NombreTipoCafe;
                     txb_descripcion.Text = tipoCafeSeleccionado.DescripcionTipoCafe;
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
                 }
             }
             else
@@ -384,6 +386,8 @@ namespace sistema_modular_cafe_majada.views
                     tipoCafeSeleccionado = null;
 
                 }
+                txb_id.Enabled = false;
+                txb_id.ReadOnly = true;
             }
             catch (Exception ex)
             {

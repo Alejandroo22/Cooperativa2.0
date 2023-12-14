@@ -314,7 +314,7 @@ namespace sistema_modular_cafe_majada.views
         public void ClearDataTxb()
         {
             List<TextBox> txb = new List<TextBox> {txb_almacen,txb_bodega,txb_calidadCafe,txb_finca,txb_numSalida,txb_observacion,
-                                                    txb_personal,txb_pesoQQs, txb_pesoSaco};
+                                                    txb_personal,txb_pesoQQs, txb_pesoSaco, txb_codCalidad, txb_codPesador};
 
             foreach (TextBox textBox in txb)
             {
@@ -511,6 +511,7 @@ namespace sistema_modular_cafe_majada.views
             {
                 iCalidad = CalidadSeleccionada.ICalidadSeleccionada;
                 txb_calidadCafe.Text = CalidadSeleccionada.NombreCalidadSeleccionada;
+                txb_codCalidad.Text = CalidadSeleccionada.ICalidadSeleccionada.ToString();
                 imgClickCalidad = true;
                 CbxSubProducto();
             }
@@ -525,6 +526,7 @@ namespace sistema_modular_cafe_majada.views
             {
                 iPesador = PersonalSeleccionado.IPersonalPesador;
                 txb_personal.Text = PersonalSeleccionado.NombrePersonalPesador;
+                txb_codPesador.Text = PersonalSeleccionado.IPersonalPesador.ToString();
             }
         }
 
@@ -1118,6 +1120,8 @@ namespace sistema_modular_cafe_majada.views
             {
                 if (e.KeyChar == (char)Keys.Enter)
                 {
+                    e.Handled = true;
+
                     string codigo = txb_codCalidad.Text.Trim();
                     int codigoInt;
 
@@ -1161,6 +1165,8 @@ namespace sistema_modular_cafe_majada.views
             {
                 if (e.KeyChar == (char)Keys.Enter)
                 {
+                    e.Handled = true;
+
                     string codigo = txb_codPesador.Text.Trim();
                     int codigoInt;
 

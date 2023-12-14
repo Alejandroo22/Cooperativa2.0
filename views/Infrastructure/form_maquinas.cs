@@ -408,6 +408,8 @@ namespace sistema_modular_cafe_majada.views
                 imagenClickeada = false;
             }
 
+            txb_id.Enabled = false;
+            txb_id.ReadOnly = true;
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -446,6 +448,8 @@ namespace sistema_modular_cafe_majada.views
                     txb_proveedorTelefono.Text=maquinaSeleccionada.TelefonoProveedorMaquinaria;
                     txb_numContrato.Text=maquinaSeleccionada.ContratoServicioMaquinaria;
                     txb_beneficio.Text=maquinaSeleccionada.NombreBeneficio;
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
                 }
             }
             else

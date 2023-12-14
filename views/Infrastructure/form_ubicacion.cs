@@ -340,6 +340,9 @@ namespace sistema_modular_cafe_majada.views
                     txb_descripcion.Text = almacenSeleccionado.DescripcionAlmacen;
                     txb_ubicacion.Text = almacenSeleccionado.UbicacionAlmacen;
                     txb_capacidad.Text = almacenSeleccionado.CapacidadAlmacen.ToString("0.00", CultureInfo.GetCultureInfo("en-US"));
+                    
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
 
                     //cbx
                     cbx_bodega.Items.Clear();
@@ -569,6 +572,8 @@ namespace sistema_modular_cafe_majada.views
                 imagenClickeada = false;
             }
 
+            txb_id.Enabled = false;
+            txb_id.ReadOnly = true;
         }
 
         private void txb_nombreAlmacen_Enter(object sender, EventArgs e)

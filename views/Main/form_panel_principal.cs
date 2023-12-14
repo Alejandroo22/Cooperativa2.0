@@ -49,7 +49,7 @@ namespace sistema_modular_cafe_majada
 
             // Configurar el temporizador para que se dispare cada cierto intervalo (por ejemplo, cada 5 segundos).
             refreshTimer = new System.Timers.Timer();
-            refreshTimer.Interval = 5000; // Intervalo en milisegundos (5 segundos en este caso).
+            refreshTimer.Interval = 2500; // Intervalo en milisegundos (5 segundos en este caso).
             refreshTimer.Elapsed += RefreshTimer_Elapsed;
             refreshTimer.Start();
 
@@ -113,27 +113,33 @@ namespace sistema_modular_cafe_majada
             var calidad = ccafeC.ObtenerUltimoId();
             Almacen almacen = new Almacen();
 
-            if (calidad.IdCalidad == idExitCalidad)
+            // Obtener el número total de registros en la base de datos
+            int totalRegistros = almacenExistenciaC.ObtenerTotalRegistrosEnLaBD();
+
+            // Incrementar el contador
+            idExitCalidad++;
+
+            // Si llegamos al último registro, reiniciar el contador
+            if (idExitCalidad > totalRegistros)
             {
-                idExitCalidad = 0;
+                idExitCalidad = 1;
             }
 
-            //cantidad SHG
-            idExitCalidad++;
+            // Cantidad SHG
             almacen = almacenExistenciaC.CountExistenceCofeeAlmacen(idExitCalidad);
-            lbl_existCafe1.Text = almacen.NombreCalidadCafe; 
+            lbl_existCafe1.Text = almacen.NombreCalidadCafe;
             lbl_cafeSHG.Text = Convert.ToString(almacen.CountExistenceCoffe);
 
-            //cantidad HG
+            // Cantidad HG
             idExitCalidad++;
             almacen = almacenExistenciaC.CountExistenceCofeeAlmacen(idExitCalidad);
-            lbl_existCafe2.Text = almacen.NombreCalidadCafe; 
+            lbl_existCafe2.Text = almacen.NombreCalidadCafe;
             lbl_cafeHG.Text = Convert.ToString(almacen.CountExistenceCoffe);
 
-            //cantidad CS
+            // Cantidad CS
             idExitCalidad++;
             almacen = almacenExistenciaC.CountExistenceCofeeAlmacen(idExitCalidad);
-            lbl_existCafe3.Text = almacen.NombreCalidadCafe; 
+            lbl_existCafe3.Text = almacen.NombreCalidadCafe;
             lbl_cafeCS.Text = Convert.ToString(almacen.CountExistenceCoffe);
         }
 

@@ -162,7 +162,8 @@ namespace sistema_modular_cafe_majada.views
                     txb_subProdCafe.Text = subProdcSeleccionado.NombreSubProducto;
                     txb_descripcion.Text = subProdcSeleccionado.DescripcionSubProducto;
                     txb_calidadCafe.Text = subProdcSeleccionado.NombreCalidadCafe;
-                    
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
                 }
             }
             else
@@ -481,7 +482,8 @@ namespace sistema_modular_cafe_majada.views
 
                 imagenClickeada = false;
             }
-
+            txb_id.Enabled = false;
+            txb_id.ReadOnly = true;
         }
 
         private void txb_id_KeyPress(object sender, KeyPressEventArgs e)

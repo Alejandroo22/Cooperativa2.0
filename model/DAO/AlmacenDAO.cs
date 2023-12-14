@@ -1053,6 +1053,34 @@ namespace sistema_modular_cafe_majada.model.DAO
             }
         }
 
+        //
+        public int ObtenerTotalRegistrosEnLaBD()
+        {
+            try
+            {
+                // Conectar a la base de datos
+                conexion.Conectar();
+
+                // Crear la consulta SQL para obtener el número total de registros
+                string consulta = "SELECT COUNT(*) FROM Almacen";
+                conexion.CrearComando(consulta);
+
+                // Ejecutar la consulta y obtener el resultado
+                int totalRegistros = Convert.ToInt32(conexion.EjecutarConsultaEscalar());
+
+                return totalRegistros;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el número total de registros: " + ex.Message);
+                return -1; // Puedes manejar el error de la manera que prefieras
+            }
+            finally
+            {
+                // Cerrar la conexión a la base de datos
+                conexion.Desconectar();
+            }
+        }
 
     }
 }

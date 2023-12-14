@@ -184,6 +184,8 @@ namespace sistema_modular_cafe_majada.views
                     txb_id.Text = Convert.ToString(beneficioSeleccionado.IdBeneficio);
                     txb_nombreBeneficio.Text = beneficioSeleccionado.NombreBeneficio;
                     txb_Ubicacion.Text = beneficioSeleccionado.UbicacionBeneficio;
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
                 }
                 else
                 {
@@ -389,6 +391,8 @@ namespace sistema_modular_cafe_majada.views
                     ClearDataTxb();
 
                 }
+                txb_id.Enabled = false;
+                txb_id.ReadOnly = true;
             }
             catch (Exception ex)
             {

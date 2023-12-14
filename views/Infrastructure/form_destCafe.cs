@@ -317,7 +317,8 @@ namespace sistema_modular_cafe_majada.views
                     txb_descripcion.Text = bodegaSeleccionado.DescripcionBodega;
                     txb_ubicacion.Text = bodegaSeleccionado.UbicacionBodega;
                     txb_beneficio.Text = bodegaSeleccionado.NombreBenficioUbicacion;
-
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
                 }
             }
             else
@@ -488,7 +489,8 @@ namespace sistema_modular_cafe_majada.views
 
                 imagenClickeada = false;
             }
-
+            txb_id.Enabled = false;
+            txb_id.ReadOnly = true;
         }
 
         private void txb_id_KeyPress(object sender, KeyPressEventArgs e)

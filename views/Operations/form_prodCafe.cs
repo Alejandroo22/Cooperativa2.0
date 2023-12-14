@@ -259,6 +259,9 @@ namespace sistema_modular_cafe_majada.views
                     txb_procedCafe.Text = proceSeleccionado.NombreProcedencia;
                     txb_descripcion.Text = proceSeleccionado.DescripcionProcedencia;
 
+                    txb_id.Enabled = true;
+                    txb_id.ReadOnly = false;
+
                     //cbxBeneficio
                     cbx_beneficio.Items.Clear();
                     CbxBeneficio();
@@ -545,6 +548,8 @@ namespace sistema_modular_cafe_majada.views
                     proceSeleccionado = null;
 
                 }
+                txb_id.Enabled = false;
+                txb_id.ReadOnly = true;
             }
             catch (Exception ex)
             {

@@ -200,6 +200,10 @@ namespace sistema_modular_cafe_majada.views
                     else
                     {
                         MessageBox.Show("SubProducto Eliminada correctamente.", "Eliminacion Satisfactoria", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        subProdcSeleccionado.IdSubProducto = 0;
+                        subProdcSeleccionado.NombreSubProducto = null;
+                        subProdcSeleccionado.DescripcionSubProducto = null;
+                        subProdcSeleccionado.NombreCalidadCafe = null;
                     }
 
                     //se actualiza la tabla
@@ -480,8 +484,8 @@ namespace sistema_modular_cafe_majada.views
                     MessageBox.Show("Error al actualizar el SubProducto, Verifique los datos ingresados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                imagenClickeada = false;
             }
+            subProdcSeleccionado = null;
             txb_id.Enabled = false;
             txb_id.ReadOnly = true;
         }

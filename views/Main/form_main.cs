@@ -13,6 +13,7 @@ using sistema_modular_cafe_majada.model.UserData;
 using sistema_modular_cafe_majada.controller.SecurityData;
 using sistema_modular_cafe_majada.model.Acces;
 using sistema_modular_cafe_majada.controller.UserDataController;
+using System.Runtime.InteropServices;
 
 namespace sistema_modular_cafe_majada
 {
@@ -22,6 +23,7 @@ namespace sistema_modular_cafe_majada
         private string _nombreCosecha;
         private Usuario usuario;
         private LogController log;
+
 
         //DICCIONARIO PARA ALMACENAR EL COLOR ORIGINAL DEL BOTON
         //private Dictionary<Button, Color> originalColors;
@@ -52,6 +54,8 @@ namespace sistema_modular_cafe_majada
 
             //codigo para maximizar a pantalla completa solamente en area de trabajo
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+
+            this.FormBorderStyle = FormBorderStyle.None;
 
             // Código 
             this.Shown += form_main_Shown;
@@ -120,12 +124,13 @@ namespace sistema_modular_cafe_majada
             AsignarColorOriginal(btn_existenciasCafe);
             AsignarColorOriginal(btn_reportes);
             AsignarColorOriginal(btn_admin_panel);*/
+
         }
 
         //FUNCION PARA IR AGREGANDO Y REMOVIENDO FORMULARIOS
         public void AddFormulario(Form fp)
         {
-            if (this.panel_container.Controls.Count > 0)
+            /*if (this.panel_container.Controls.Count > 0)
             {
                 this.panel_container.Controls.RemoveAt(0);
             }
@@ -133,6 +138,26 @@ namespace sistema_modular_cafe_majada
             fp.TopLevel = false;
             this.panel_container.Controls.Add(fp);
             fp.Dock = DockStyle.Fill;
+            fp.Show();*/
+
+            if (this.panel_container.Controls.Count > 0)
+            {
+                this.panel_container.Controls.RemoveAt(0);
+            }
+
+            fp.TopLevel = false;
+            this.panel_container.Controls.Add(fp);
+
+            // Establecer el tamaño del formulario según las dimensiones del panel
+            fp.Size = this.panel_container.Size;
+            fp.Location = new Point(0, 0);
+
+            // Si deseas que el formulario se ajuste automáticamente al cambio de tamaño del panel:
+            this.panel_container.Resize += (sender, args) =>
+            {
+                fp.Size = this.panel_container.Size;
+            };
+
             fp.Show();
         }
 
@@ -148,12 +173,6 @@ namespace sistema_modular_cafe_majada
         //    if (this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Maximized;
         //    else this.WindowState = FormWindowState.Normal;
         //}
-
-        //funcion para minimizar la pantalla (ocultar)
-        private void btn_min_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
 
         private void btn_principal_Click(object sender, EventArgs e)
         {
@@ -275,6 +294,11 @@ namespace sistema_modular_cafe_majada
             FontViews.LabelStyleInfo(info);
             //se asigna a botones
             FontViews.ButtonStyleMain(buttons);
+        }
+
+        private void btn_min_Click_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         //FUNCIONES PARA CAMBIAR DE COLOR LOS BOTONES AL HACER CLICK EN ELLOS

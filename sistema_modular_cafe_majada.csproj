@@ -37,8 +37,7 @@
     </Win32Resource>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>icono-majada64px.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -786,6 +785,7 @@
     <None Include="Resources\editar 24px.png" />
     <None Include="Resources\apoyo.png" />
     <None Include="Resources\reporte 24px.png" />
+    <Content Include="icono-majada64px.ico" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

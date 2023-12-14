@@ -107,7 +107,7 @@ namespace sistema_modular_cafe_majada
             this.btn_min.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.btn_min.TabIndex = 2;
             this.btn_min.TabStop = false;
-            this.btn_min.Click += new System.EventHandler(this.btn_min_Click);
+            this.btn_min.Click += new System.EventHandler(this.btn_min_Click_1);
             // 
             // btn_close
             // 
@@ -346,7 +346,7 @@ namespace sistema_modular_cafe_majada
             this.Controls.Add(this.panel_container);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.barra_controles);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximumSize = new System.Drawing.Size(2880, 1755);

@@ -1,4 +1,5 @@
-﻿using sistema_modular_cafe_majada.controller.AccesController;
+﻿using MySql.Data.MySqlClient;
+using sistema_modular_cafe_majada.controller.AccesController;
 using sistema_modular_cafe_majada.controller.SecurityData;
 using sistema_modular_cafe_majada.controller.UserDataController;
 using sistema_modular_cafe_majada.model.Acces;
@@ -378,7 +379,7 @@ namespace sistema_modular_cafe_majada.views
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
 
-                    string key = "CooperativaAdmin"; 
+                    string key = "CooperativaAdmin";
 
                     // Crear una instancia de la clase text para obtener los valores cifrados
                     text configuracion = new text(key);
@@ -393,7 +394,7 @@ namespace sistema_modular_cafe_majada.views
 
                         // Generar el comando para realizar el respaldo utilizando los valores descifrados
                         string rutaRespaldos = saveFileDialog.FileName;
-                        string rutaMySqlDump = @"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe";
+                        string rutaMySqlDump = @"../../views/Reports/mysqldump.exe";
                         string comando = $"\"{rutaMySqlDump}\" --user={usuarioDescifrado} --password={contrasenaDescifrada} --host={servidorDescifrado} {baseDeDatosDescifrada} > \"{rutaRespaldos}\"";
 
                         // Ejecutar el comando en el proceso de la línea de comandos
@@ -418,6 +419,8 @@ namespace sistema_modular_cafe_majada.views
                 }
             }
         }
+
+
 
 
 

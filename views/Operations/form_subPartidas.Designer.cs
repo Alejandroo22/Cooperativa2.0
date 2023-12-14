@@ -321,6 +321,7 @@ namespace sistema_modular_cafe_majada.views
             this.btn_CCafe.Name = "btn_CCafe";
             this.btn_CCafe.Size = new System.Drawing.Size(35, 34);
             this.btn_CCafe.TabIndex = 8;
+            this.btn_CCafe.TabStop = false;
             this.btn_CCafe.UseVisualStyleBackColor = true;
             this.btn_CCafe.Click += new System.EventHandler(this.btn_CCafe_Click);
             // 
@@ -334,6 +335,7 @@ namespace sistema_modular_cafe_majada.views
             this.btn_prodCafe.Name = "btn_prodCafe";
             this.btn_prodCafe.Size = new System.Drawing.Size(35, 34);
             this.btn_prodCafe.TabIndex = 6;
+            this.btn_prodCafe.TabStop = false;
             this.btn_prodCafe.UseVisualStyleBackColor = true;
             this.btn_prodCafe.Click += new System.EventHandler(this.btn_prodCafe_Click);
             // 
@@ -626,6 +628,7 @@ namespace sistema_modular_cafe_majada.views
             this.btn_puntero.Name = "btn_puntero";
             this.btn_puntero.Size = new System.Drawing.Size(35, 34);
             this.btn_puntero.TabIndex = 10;
+            this.btn_puntero.TabStop = false;
             this.btn_puntero.UseVisualStyleBackColor = true;
             this.btn_puntero.Click += new System.EventHandler(this.btn_puntero_Click);
             // 
@@ -887,6 +890,7 @@ namespace sistema_modular_cafe_majada.views
             this.btn_catador.Name = "btn_catador";
             this.btn_catador.Size = new System.Drawing.Size(35, 34);
             this.btn_catador.TabIndex = 4;
+            this.btn_catador.TabStop = false;
             this.btn_catador.UseVisualStyleBackColor = true;
             this.btn_catador.Click += new System.EventHandler(this.btn_catador_Click);
             // 
@@ -1058,6 +1062,7 @@ namespace sistema_modular_cafe_majada.views
             this.btn_pesador.Name = "btn_pesador";
             this.btn_pesador.Size = new System.Drawing.Size(35, 34);
             this.btn_pesador.TabIndex = 9;
+            this.btn_pesador.TabStop = false;
             this.btn_pesador.UseVisualStyleBackColor = true;
             this.btn_pesador.Click += new System.EventHandler(this.btn_pesador_Click);
             // 

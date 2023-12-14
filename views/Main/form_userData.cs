@@ -5,6 +5,8 @@ using sistema_modular_cafe_majada.controller.UserDataController;
 using sistema_modular_cafe_majada.model.Acces;
 using sistema_modular_cafe_majada.model.UserData;
 using sistema_modular_cafe_majada.Settings;
+using MySql.Data.MySqlClient;
+using static MySql.Data.MySqlClient.MySqlBackup;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -368,6 +370,12 @@ namespace sistema_modular_cafe_majada.views
 
         private void btn_backup_Click(object sender, EventArgs e)
         {
+            RealizarRespaldo();
+        }
+
+
+        private void RealizarRespaldo()
+        {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 // Configurar el cuadro de diálogo para guardar el respaldo
@@ -378,48 +386,47 @@ namespace sistema_modular_cafe_majada.views
                 // Si el usuario selecciona una ubicación y hace clic en Guardar
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-
                     string key = "CooperativaAdmin";
-
-                    // Crear una instancia de la clase text para obtener los valores cifrados
                     text configuracion = new text(key);
 
                     try
                     {
-                        // Descifrar los valores cifrados
                         string servidorDescifrado = EncryptionUtility.DecryptString(configuracion.servidorCifrado, key);
                         string usuarioDescifrado = EncryptionUtility.DecryptString(configuracion.usuarioCifrado, key);
                         string contrasenaDescifrada = EncryptionUtility.DecryptString(configuracion.contrasenaCifrada, key);
                         string baseDeDatosDescifrada = EncryptionUtility.DecryptString(configuracion.baseDeDatosCifrada, key);
 
-                        // Generar el comando para realizar el respaldo utilizando los valores descifrados
-                        string rutaRespaldos = saveFileDialog.FileName;
-                        string rutaMySqlDump = @"../../views/Reports/mysqldump.exe";
-                        string comando = $"\"{rutaMySqlDump}\" --user={usuarioDescifrado} --password={contrasenaDescifrada} --host={servidorDescifrado} {baseDeDatosDescifrada} > \"{rutaRespaldos}\"";
+                        string connectionString = $"Server={servidorDescifrado};Database={baseDeDatosDescifrada};User ID={usuarioDescifrado};Password={contrasenaDescifrada};";
 
-                        // Ejecutar el comando en el proceso de la línea de comandos
-                        ProcessStartInfo psi = new ProcessStartInfo("cmd.exe")
+                        using (MySqlConnection connection = new MySqlConnection(connectionString))
                         {
-                            RedirectStandardInput = true,
-                            UseShellExecute = false,
-                            CreateNoWindow = true
-                        };
-                        Process process = Process.Start(psi);
-                        process.StandardInput.WriteLine(comando);
-                        process.StandardInput.Close();
-                        process.WaitForExit();
+                            // Abrir la conexión
+                            connection.Open();
+
+                            using (MySqlCommand cmd = new MySqlCommand())
+                            {
+                                // Configurar el comando con la conexión
+                                cmd.Connection = connection;
+
+                                // Configurar el objeto para respaldo
+                                using (MySqlBackup mb = new MySqlBackup(cmd))
+                                {
+                                    // Respaldar la base de datos al archivo seleccionado
+                                    mb.ExportToFile(saveFileDialog.FileName);
+                                }
+                            }
+
+                            MessageBox.Show("Respaldo generado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error al descifrar: " + ex.Message);
+                        Console.WriteLine("Error al realizar el respaldo: " + ex.Message);
+                        MessageBox.Show("Error al realizar el respaldo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-                    // Mostrar mensaje de éxito
-                    MessageBox.Show("Respaldo generado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
-
 
 
 
